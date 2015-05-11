@@ -134,9 +134,9 @@
 <text x="88.9" y="8.89" size="2.54" layer="1" font="vector" ratio="10">Input</text>
 <text x="15.875" y="35.56" size="2.54" layer="1" font="vector" ratio="10" rot="R180">5V</text>
 <text x="18.415" y="40.64" size="2.54" layer="1" font="vector" ratio="10" rot="R180">GND</text>
-<text x="2.54" y="2.54" size="2.54" layer="1" font="vector" ratio="12">Chris Gregg</text>
-<text x="30.48" y="2.54" size="2.54" layer="1" font="vector" ratio="12">Kate Wasynczuk</text>
-<text x="71.12" y="2.54" size="2.54" layer="1" font="vector" ratio="12">Summer 2015</text>
+<text x="1.27" y="1.27" size="2.54" layer="1" font="vector" ratio="12">Chris Gregg</text>
+<text x="30.48" y="1.27" size="2.54" layer="1" font="vector" ratio="12">Kate Wasynczuk</text>
+<text x="71.12" y="1.27" size="2.54" layer="1" font="vector" ratio="12">V.2 May 2015</text>
 <text x="71.12" y="21.59" size="2.54" layer="1" font="vector" ratio="12">~G</text>
 <text x="71.12" y="26.67" size="2.54" layer="1" font="vector" ratio="12">~SRCLR</text>
 <text x="71.12" y="16.51" size="2.54" layer="1" font="vector" ratio="12">RCK</text>
@@ -150,6 +150,19 @@
 <rectangle x1="82.55" y1="48.26" x2="99.06" y2="66.04" layer="43"/>
 <rectangle x1="82.55" y1="29.21" x2="99.06" y2="46.99" layer="43"/>
 <rectangle x1="63.5" y1="5.08" x2="81.28" y2="39.37" layer="43"/>
+<rectangle x1="1.27" y1="21.59" x2="11.43" y2="26.67" layer="43"/>
+<rectangle x1="1.27" y1="13.97" x2="11.43" y2="19.05" layer="43"/>
+<rectangle x1="1.27" y1="5.08" x2="11.43" y2="10.16" layer="43"/>
+<rectangle x1="16.51" y1="5.08" x2="26.67" y2="10.16" layer="43"/>
+<rectangle x1="16.51" y1="13.97" x2="26.67" y2="19.05" layer="43"/>
+<rectangle x1="16.51" y1="21.59" x2="26.67" y2="26.67" layer="43"/>
+<rectangle x1="31.75" y1="21.59" x2="41.91" y2="26.67" layer="43"/>
+<rectangle x1="31.75" y1="13.97" x2="41.91" y2="19.05" layer="43"/>
+<rectangle x1="31.75" y1="5.08" x2="41.91" y2="10.16" layer="43"/>
+<rectangle x1="46.99" y1="5.08" x2="57.15" y2="10.16" layer="43"/>
+<rectangle x1="46.99" y1="13.97" x2="57.15" y2="19.05" layer="43"/>
+<rectangle x1="46.99" y1="21.59" x2="57.15" y2="26.67" layer="43"/>
+<rectangle x1="15.24" y1="26.67" x2="31.75" y2="31.75" layer="43"/>
 </plain>
 <libraries>
 <library name="pinhead">
@@ -1863,24 +1876,24 @@ design rules under a new name.</description>
 </element>
 <element name="R1" library="resistor" package="R2512" value="576" x="6.35" y="24.13"/>
 <element name="R3" library="resistor" package="R2512" value="576" x="6.35" y="16.51"/>
-<element name="R4" library="resistor" package="R2512" value="576" x="6.35" y="8.89"/>
+<element name="R4" library="resistor" package="R2512" value="576" x="6.35" y="7.62"/>
 <element name="R7" library="resistor" package="R2512" value="576" x="21.59" y="24.13"/>
 <element name="R8" library="resistor" package="R2512" value="576" x="21.59" y="16.51"/>
-<element name="R9" library="resistor" package="R2512" value="576" x="21.59" y="8.89"/>
+<element name="R9" library="resistor" package="R2512" value="576" x="21.59" y="7.62"/>
 <element name="R2" library="resistor" package="R2512" value="576" x="36.83" y="24.13"/>
 <element name="R10" library="resistor" package="R2512" value="576" x="36.83" y="16.51"/>
-<element name="R11" library="resistor" package="R2512" value="576" x="36.83" y="8.89"/>
+<element name="R11" library="resistor" package="R2512" value="576" x="36.83" y="7.62"/>
 <element name="R12" library="resistor" package="R2512" value="576" x="52.07" y="24.13"/>
 <element name="R13" library="resistor" package="R2512" value="576" x="52.07" y="16.51"/>
-<element name="R14" library="resistor" package="R2512" value="576" x="52.07" y="8.89"/>
-<element name="RCK" library="led" package="SML1206" value="" x="67.31" y="17.78"/>
-<element name="~SRCLR" library="led" package="SML1206" value="" x="67.31" y="27.94"/>
-<element name="SHIFT" library="led" package="SML1206" value="" x="67.31" y="31.75"/>
-<element name="SRCK" library="led" package="SML1206" value="" x="67.31" y="12.7"/>
-<element name="~G" library="led" package="SML1206" value="" x="67.31" y="22.86"/>
-<element name="SER-IN" library="led" package="SML1206" value="" x="67.31" y="7.62"/>
+<element name="R14" library="resistor" package="R2512" value="576" x="52.07" y="7.62"/>
+<element name="RCK" library="led" package="SML1206" value="rck" x="67.31" y="17.78"/>
+<element name="~SRCLR" library="led" package="SML1206" value="~srclr" x="67.31" y="27.94"/>
+<element name="SHIFT" library="led" package="SML1206" value="shift" x="67.31" y="31.75"/>
+<element name="SRCK" library="led" package="SML1206" value="srck" x="67.31" y="12.7"/>
+<element name="~G" library="led" package="SML1206" value="~g" x="67.31" y="22.86"/>
+<element name="SER-IN" library="led" package="SML1206" value="ser-in" x="67.31" y="7.62"/>
 <element name="R5" library="resistor" package="R2512" value="576" x="26.67" y="29.21"/>
-<element name="POWER" library="led" package="SML1206" value="" x="19.05" y="29.21" rot="R180"/>
+<element name="POWER" library="led" package="SML1206" value="led" x="19.05" y="29.21" rot="R180"/>
 </elements>
 <signals>
 <signal name="N$1">
@@ -2067,17 +2080,17 @@ design rules under a new name.</description>
 <wire x1="7.62" y1="38.81" x2="14.8336" y2="53.975" width="0" layer="19" extent="1-1"/>
 <wire x1="3.55" y1="24.13" x2="7.62" y2="38.81" width="0" layer="19" extent="1-1"/>
 <wire x1="3.55" y1="16.51" x2="3.55" y2="24.13" width="0" layer="19" extent="1-1"/>
-<wire x1="3.55" y1="8.89" x2="3.55" y2="16.51" width="0" layer="19" extent="1-1"/>
+<wire x1="3.55" y1="7.62" x2="3.55" y2="16.51" width="0" layer="19" extent="1-1"/>
 <wire x1="18.79" y1="24.13" x2="3.55" y2="24.13" width="0" layer="19" extent="1-1"/>
 <wire x1="18.79" y1="16.51" x2="18.79" y2="24.13" width="0" layer="19" extent="1-1"/>
-<wire x1="18.79" y1="8.89" x2="18.79" y2="16.51" width="0" layer="19" extent="1-1"/>
+<wire x1="18.79" y1="7.62" x2="18.79" y2="16.51" width="0" layer="19" extent="1-1"/>
 <wire x1="29.47" y1="29.21" x2="18.79" y2="24.13" width="0" layer="19" extent="1-1"/>
 <wire x1="39.63" y1="24.13" x2="29.47" y2="29.21" width="0" layer="19" extent="1-1"/>
 <wire x1="39.63" y1="16.51" x2="39.63" y2="24.13" width="0" layer="19" extent="1-1"/>
-<wire x1="39.63" y1="8.89" x2="39.63" y2="16.51" width="0" layer="19" extent="1-1"/>
+<wire x1="39.63" y1="7.62" x2="39.63" y2="16.51" width="0" layer="19" extent="1-1"/>
 <wire x1="54.87" y1="24.13" x2="39.63" y2="24.13" width="0" layer="19" extent="1-1"/>
 <wire x1="54.87" y1="16.51" x2="54.87" y2="24.13" width="0" layer="19" extent="1-1"/>
-<wire x1="54.87" y1="8.89" x2="54.87" y2="16.51" width="0" layer="19" extent="1-1"/>
+<wire x1="54.87" y1="7.62" x2="54.87" y2="16.51" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$9">
 <contactref element="U0" pad="24"/>
@@ -2416,7 +2429,7 @@ design rules under a new name.</description>
 <signal name="N$17">
 <contactref element="OK1" pad="2"/>
 <contactref element="R9" pad="2"/>
-<wire x1="24.39" y1="8.89" x2="56.515" y2="33.7566" width="0" layer="19" extent="1-1"/>
+<wire x1="24.39" y1="7.62" x2="56.515" y2="33.7566" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$20">
 <contactref element="JP6" pad="1"/>
@@ -2456,7 +2469,7 @@ design rules under a new name.</description>
 <signal name="N$76">
 <contactref element="OK3" pad="2"/>
 <contactref element="R4" pad="2"/>
-<wire x1="9.15" y1="8.89" x2="32.385" y2="33.7566" width="0" layer="19" extent="1-1"/>
+<wire x1="9.15" y1="7.62" x2="32.385" y2="33.7566" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$77">
 <contactref element="R3" pad="2"/>
@@ -2481,12 +2494,12 @@ design rules under a new name.</description>
 <signal name="N$73">
 <contactref element="R14" pad="1"/>
 <contactref element="SHIFT" pad="C"/>
-<wire x1="49.27" y1="8.89" x2="65.56" y2="31.75" width="0" layer="19" extent="1-1"/>
+<wire x1="49.27" y1="7.62" x2="65.56" y2="31.75" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$74">
 <contactref element="R11" pad="1"/>
 <contactref element="SRCK" pad="C"/>
-<wire x1="34.03" y1="8.89" x2="65.56" y2="12.7" width="0" layer="19" extent="1-1"/>
+<wire x1="34.03" y1="7.62" x2="65.56" y2="12.7" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$75">
 <contactref element="R10" pad="1"/>
