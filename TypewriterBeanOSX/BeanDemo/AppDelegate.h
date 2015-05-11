@@ -56,6 +56,9 @@
 - (IBAction) toggleSER_IN:(id)sender;
 - (IBAction) toggleSHIFT:(id)sender;
 - (IBAction) toggleLED:(id)sender;
+- (IBAction) shiftZero:(id) sender;
+- (IBAction) shiftOne:(id) sender;
+- (void) setAll;
 
 
 - (void)updateAll;

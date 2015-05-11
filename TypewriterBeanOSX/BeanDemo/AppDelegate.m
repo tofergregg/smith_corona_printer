@@ -145,6 +145,77 @@
         }
 }
 
+- (void) shiftBit {
+        NSLog(@"Changing SRCK to HIGH");
+        [bean sendSerialString:@"g"];
+        
+        NSLog(@"Changing SRCK to LOW");
+        [bean sendSerialString:@"h"];
+        
+        NSLog(@"Changing RCK to HIGH");
+        [bean sendSerialString:@"e"];
+        
+        NSLog(@"Changing RCK to LOW");
+        [bean sendSerialString:@"f"];
+}
+
+- (IBAction)shiftZero:(id)sender {
+        NSLog(@"Changing to 0");
+        [bean sendSerialString:@"j"];
+        [self shiftBit];
+}
+
+- (IBAction)shiftOne:(id)sender {
+        NSLog(@"Changing to 1");
+        [bean sendSerialString:@"i"];
+        [self shiftBit];
+}
+
+- (void) setAll {
+        if ([SRCLR.stringValue isEqual: @"HIGH"]) {
+                [bean sendSerialString:@"a"];
+        }
+        else {
+                [bean sendSerialString:@"b"];
+        }
+        
+        if ([G.stringValue isEqual: @"HIGH"]) {
+                [bean sendSerialString:@"c"];
+        }
+        else {
+                [bean sendSerialString:@"d"];
+        }
+        
+        if ([RCK.stringValue isEqual: @"HIGH"]) {
+                [bean sendSerialString:@"e"];
+        }
+        else {
+                [bean sendSerialString:@"f"];
+        }
+        
+        if ([SRCK.stringValue isEqual: @"HIGH"]) {
+                [bean sendSerialString:@"g"];
+        }
+        else {
+                [bean sendSerialString:@"h"];
+        }
+        
+        if ([SER_IN.stringValue isEqual: @"1"]) {
+                [bean sendSerialString:@"i"];
+        }
+        else {
+                [bean sendSerialString:@"j"];
+        }
+        
+        if ([SHIFT.stringValue isEqual: @"OFF"]) {
+                [bean sendSerialString:@"k"];
+        }
+        else {
+                [bean sendSerialString:@"l"];
+        }
+        
+}
+
 /*
  This method is called when connect button pressed and it takes appropriate actions depending on device connection state
  */
@@ -198,6 +269,9 @@
         NSLog(@"Bean connected!");
         [connectionProgress stopAnimation:self];
         [connectedLabel setStringValue:connectedCheck];
+        
+        // set up pins based on window
+        [self setAll];
         
 }
 
