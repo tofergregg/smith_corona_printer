@@ -5998,9 +5998,6 @@ Source: www.kingbright.com</description>
 <pinref part="U1" gate="A" pin="VCC"/>
 <wire x1="-441.96" y1="233.68" x2="-441.96" y2="266.7" width="0.1524" layer="91"/>
 <junction x="-441.96" y="266.7"/>
-<wire x1="-576.58" y1="223.52" x2="-548.64" y2="223.52" width="0.1524" layer="91"/>
-<wire x1="-548.64" y1="223.52" x2="-548.64" y2="266.7" width="0.1524" layer="91"/>
-<wire x1="-548.64" y1="266.7" x2="-533.4" y2="266.7" width="0.1524" layer="91"/>
 <junction x="-533.4" y="266.7"/>
 <wire x1="-533.4" y1="266.7" x2="-533.4" y2="342.9" width="0.1524" layer="91"/>
 <wire x1="-533.4" y1="342.9" x2="-548.64" y2="342.9" width="0.1524" layer="91"/>
@@ -6030,12 +6027,13 @@ Source: www.kingbright.com</description>
 <junction x="-398.78" y="368.3"/>
 <pinref part="X1" gate="-1" pin="S"/>
 <wire x1="-576.58" y1="256.54" x2="-591.82" y2="256.54" width="0.1524" layer="91"/>
-<wire x1="-576.58" y1="223.52" x2="-576.58" y2="243.84" width="0.1524" layer="91"/>
 <pinref part="POWER" gate="G$1" pin="A"/>
 <wire x1="-576.58" y1="243.84" x2="-576.58" y2="256.54" width="0.1524" layer="91"/>
 <wire x1="-581.66" y1="238.76" x2="-581.66" y2="243.84" width="0.1524" layer="91"/>
 <wire x1="-581.66" y1="243.84" x2="-576.58" y2="243.84" width="0.1524" layer="91"/>
-<junction x="-576.58" y="243.84"/>
+<wire x1="-576.58" y1="256.54" x2="-576.58" y2="266.7" width="0.1524" layer="91"/>
+<junction x="-576.58" y="256.54"/>
+<wire x1="-576.58" y1="266.7" x2="-533.4" y2="266.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="GNDA" class="0">

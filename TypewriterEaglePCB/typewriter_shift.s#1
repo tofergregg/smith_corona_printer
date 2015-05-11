@@ -5866,14 +5866,14 @@ Source: www.kingbright.com</description>
 <part name="R12" library="resistor" deviceset="R-US_" device="R2512" value="576"/>
 <part name="R13" library="resistor" deviceset="R-US_" device="R2512" value="576"/>
 <part name="R14" library="resistor" deviceset="R-US_" device="R2512" value="576"/>
-<part name="RCK" library="led" deviceset="LED" device="SML1206"/>
-<part name="~SRCLR" library="led" deviceset="LED" device="SML1206"/>
-<part name="SHIFT" library="led" deviceset="LED" device="SML1206"/>
-<part name="SRCK" library="led" deviceset="LED" device="SML1206"/>
-<part name="~G" library="led" deviceset="LED" device="SML1206"/>
-<part name="SER-IN" library="led" deviceset="LED" device="SML1206"/>
+<part name="RCK" library="led" deviceset="LED" device="SML1206" value="rck"/>
+<part name="~SRCLR" library="led" deviceset="LED" device="SML1206" value="~srclr"/>
+<part name="SHIFT" library="led" deviceset="LED" device="SML1206" value="shift"/>
+<part name="SRCK" library="led" deviceset="LED" device="SML1206" value="srck"/>
+<part name="~G" library="led" deviceset="LED" device="SML1206" value="~g"/>
+<part name="SER-IN" library="led" deviceset="LED" device="SML1206" value="ser-in"/>
 <part name="R5" library="resistor" deviceset="R-US_" device="R2512" value="576"/>
-<part name="POWER" library="led" deviceset="LED" device="SML1206"/>
+<part name="POWER" library="led" deviceset="LED" device="SML1206" value="led"/>
 </parts>
 <sheets>
 <sheet>

@@ -1873,14 +1873,14 @@ design rules under a new name.</description>
 <element name="R12" library="resistor" package="R2512" value="576" x="52.07" y="24.13"/>
 <element name="R13" library="resistor" package="R2512" value="576" x="52.07" y="16.51"/>
 <element name="R14" library="resistor" package="R2512" value="576" x="52.07" y="8.89"/>
-<element name="RCK" library="led" package="SML1206" value="" x="67.31" y="17.78"/>
-<element name="~SRCLR" library="led" package="SML1206" value="" x="67.31" y="27.94"/>
-<element name="SHIFT" library="led" package="SML1206" value="" x="67.31" y="31.75"/>
-<element name="SRCK" library="led" package="SML1206" value="" x="67.31" y="12.7"/>
-<element name="~G" library="led" package="SML1206" value="" x="67.31" y="22.86"/>
-<element name="SER-IN" library="led" package="SML1206" value="" x="67.31" y="7.62"/>
+<element name="RCK" library="led" package="SML1206" value="rck" x="67.31" y="17.78"/>
+<element name="~SRCLR" library="led" package="SML1206" value="~srclr" x="67.31" y="27.94"/>
+<element name="SHIFT" library="led" package="SML1206" value="shift" x="67.31" y="31.75"/>
+<element name="SRCK" library="led" package="SML1206" value="srck" x="67.31" y="12.7"/>
+<element name="~G" library="led" package="SML1206" value="~g" x="67.31" y="22.86"/>
+<element name="SER-IN" library="led" package="SML1206" value="ser-in" x="67.31" y="7.62"/>
 <element name="R5" library="resistor" package="R2512" value="576" x="26.67" y="29.21"/>
-<element name="POWER" library="led" package="SML1206" value="" x="19.05" y="29.21" rot="R180"/>
+<element name="POWER" library="led" package="SML1206" value="led" x="19.05" y="29.21" rot="R180"/>
 </elements>
 <signals>
 <signal name="N$1">

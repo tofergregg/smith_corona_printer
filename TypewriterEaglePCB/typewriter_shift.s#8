@@ -43,8 +43,13 @@
 <layer number="47" name="Measures" color="7" fill="1" visible="no" active="no"/>
 <layer number="48" name="Document" color="7" fill="1" visible="no" active="no"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="no" active="no"/>
+<layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
 <layer number="51" name="tDocu" color="7" fill="1" visible="no" active="no"/>
 <layer number="52" name="bDocu" color="7" fill="1" visible="no" active="no"/>
+<layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
+<layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
+<layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
+<layer number="57" name="tCAD" color="7" fill="1" visible="no" active="no"/>
 <layer number="90" name="Modules" color="5" fill="1" visible="yes" active="yes"/>
 <layer number="91" name="Nets" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="92" name="Busses" color="1" fill="1" visible="yes" active="yes"/>
@@ -55,6 +60,69 @@
 <layer number="97" name="Info" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="98" name="Guide" color="6" fill="1" visible="yes" active="yes"/>
 <layer number="99" name="SpiceOrder" color="5" fill="1" visible="yes" active="yes"/>
+<layer number="100" name="Muster" color="7" fill="1" visible="no" active="no"/>
+<layer number="101" name="Patch_Top" color="12" fill="4" visible="no" active="yes"/>
+<layer number="102" name="Vscore" color="7" fill="1" visible="no" active="yes"/>
+<layer number="103" name="tMap" color="7" fill="1" visible="no" active="yes"/>
+<layer number="104" name="Name" color="16" fill="1" visible="no" active="yes"/>
+<layer number="105" name="tPlate" color="7" fill="1" visible="no" active="yes"/>
+<layer number="106" name="bPlate" color="7" fill="1" visible="no" active="yes"/>
+<layer number="107" name="Crop" color="7" fill="1" visible="no" active="yes"/>
+<layer number="108" name="tplace-old" color="10" fill="1" visible="no" active="yes"/>
+<layer number="109" name="ref-old" color="11" fill="1" visible="no" active="yes"/>
+<layer number="110" name="fp0" color="7" fill="1" visible="no" active="yes"/>
+<layer number="111" name="LPC17xx" color="7" fill="1" visible="no" active="yes"/>
+<layer number="112" name="tSilk" color="7" fill="1" visible="no" active="yes"/>
+<layer number="113" name="IDFDebug" color="4" fill="1" visible="no" active="yes"/>
+<layer number="116" name="Patch_BOT" color="9" fill="4" visible="no" active="yes"/>
+<layer number="121" name="_tsilk" color="7" fill="1" visible="no" active="yes"/>
+<layer number="122" name="_bsilk" color="7" fill="1" visible="no" active="yes"/>
+<layer number="123" name="tTestmark" color="7" fill="1" visible="no" active="yes"/>
+<layer number="124" name="bTestmark" color="7" fill="1" visible="no" active="yes"/>
+<layer number="125" name="_tNames" color="7" fill="1" visible="no" active="yes"/>
+<layer number="126" name="_bNames" color="7" fill="1" visible="no" active="yes"/>
+<layer number="127" name="_tValues" color="7" fill="1" visible="no" active="yes"/>
+<layer number="128" name="_bValues" color="7" fill="1" visible="no" active="yes"/>
+<layer number="131" name="tAdjust" color="7" fill="1" visible="no" active="yes"/>
+<layer number="132" name="bAdjust" color="7" fill="1" visible="no" active="yes"/>
+<layer number="144" name="Drill_legend" color="7" fill="1" visible="no" active="yes"/>
+<layer number="150" name="Notes" color="7" fill="1" visible="no" active="yes"/>
+<layer number="151" name="HeatSink" color="7" fill="1" visible="no" active="yes"/>
+<layer number="152" name="_bDocu" color="7" fill="1" visible="no" active="yes"/>
+<layer number="153" name="FabDoc1" color="7" fill="1" visible="no" active="yes"/>
+<layer number="154" name="FabDoc2" color="7" fill="1" visible="no" active="yes"/>
+<layer number="155" name="FabDoc3" color="7" fill="1" visible="no" active="yes"/>
+<layer number="199" name="Contour" color="7" fill="1" visible="no" active="yes"/>
+<layer number="200" name="200bmp" color="1" fill="10" visible="no" active="yes"/>
+<layer number="201" name="201bmp" color="2" fill="10" visible="no" active="yes"/>
+<layer number="202" name="202bmp" color="3" fill="10" visible="no" active="yes"/>
+<layer number="203" name="203bmp" color="4" fill="10" visible="no" active="yes"/>
+<layer number="204" name="204bmp" color="5" fill="10" visible="no" active="yes"/>
+<layer number="205" name="205bmp" color="6" fill="10" visible="no" active="yes"/>
+<layer number="206" name="206bmp" color="7" fill="10" visible="no" active="yes"/>
+<layer number="207" name="207bmp" color="8" fill="10" visible="no" active="yes"/>
+<layer number="208" name="208bmp" color="9" fill="10" visible="no" active="yes"/>
+<layer number="209" name="209bmp" color="7" fill="1" visible="no" active="yes"/>
+<layer number="210" name="210bmp" color="7" fill="1" visible="no" active="yes"/>
+<layer number="211" name="211bmp" color="7" fill="1" visible="no" active="yes"/>
+<layer number="212" name="212bmp" color="7" fill="1" visible="no" active="yes"/>
+<layer number="213" name="213bmp" color="7" fill="1" visible="no" active="yes"/>
+<layer number="214" name="214bmp" color="7" fill="1" visible="no" active="yes"/>
+<layer number="215" name="215bmp" color="7" fill="1" visible="no" active="yes"/>
+<layer number="216" name="216bmp" color="7" fill="1" visible="no" active="yes"/>
+<layer number="217" name="217bmp" color="18" fill="1" visible="no" active="no"/>
+<layer number="218" name="218bmp" color="19" fill="1" visible="no" active="no"/>
+<layer number="219" name="219bmp" color="20" fill="1" visible="no" active="no"/>
+<layer number="220" name="220bmp" color="21" fill="1" visible="no" active="no"/>
+<layer number="221" name="221bmp" color="22" fill="1" visible="no" active="no"/>
+<layer number="222" name="222bmp" color="23" fill="1" visible="no" active="no"/>
+<layer number="223" name="223bmp" color="24" fill="1" visible="no" active="no"/>
+<layer number="224" name="224bmp" color="25" fill="1" visible="no" active="no"/>
+<layer number="248" name="Housing" color="7" fill="1" visible="no" active="yes"/>
+<layer number="249" name="Edge" color="7" fill="1" visible="no" active="yes"/>
+<layer number="250" name="Descript" color="3" fill="1" visible="no" active="no"/>
+<layer number="251" name="SMDround" color="12" fill="11" visible="no" active="no"/>
+<layer number="254" name="cooling" color="7" fill="1" visible="no" active="yes"/>
 </layers>
 <schematic xreflabel="%F%N/%S.%C%R" xrefpart="/%S.%C%R">
 <libraries>
@@ -7701,9 +7769,20 @@ Source: 153385-da-01-en-Optocoupler_ILD205-T.pdf</description>
 <part name="OK2" library="optocoupler" deviceset="ILD2*" device="" technology="05"/>
 <part name="OK3" library="optocoupler" deviceset="ILD2*" device="" technology="05"/>
 <part name="OK4" library="optocoupler" deviceset="ILD2*" device="" technology="05"/>
-<part name="R2" library="resistor" deviceset="R-US_" device="R2512" value="576"/>
 <part name="R5" library="resistor" deviceset="R-US_" device="R2512" value="220"/>
 <part name="R6" library="resistor" deviceset="R-US_" device="R2512" value="660"/>
+<part name="R1" library="resistor" deviceset="R-US_" device="R2512" value="576"/>
+<part name="R3" library="resistor" deviceset="R-US_" device="R2512" value="576"/>
+<part name="R4" library="resistor" deviceset="R-US_" device="R2512" value="576"/>
+<part name="R7" library="resistor" deviceset="R-US_" device="R2512" value="576"/>
+<part name="R8" library="resistor" deviceset="R-US_" device="R2512" value="576"/>
+<part name="R9" library="resistor" deviceset="R-US_" device="R2512" value="576"/>
+<part name="R2" library="resistor" deviceset="R-US_" device="R2512" value="576"/>
+<part name="R10" library="resistor" deviceset="R-US_" device="R2512" value="576"/>
+<part name="R11" library="resistor" deviceset="R-US_" device="R2512" value="576"/>
+<part name="R12" library="resistor" deviceset="R-US_" device="R2512" value="576"/>
+<part name="R13" library="resistor" deviceset="R-US_" device="R2512" value="576"/>
+<part name="R14" library="resistor" deviceset="R-US_" device="R2512" value="576"/>
 </parts>
 <sheets>
 <sheet>
@@ -7739,9 +7818,20 @@ Source: 153385-da-01-en-Optocoupler_ILD205-T.pdf</description>
 <instance part="OK3" gate="A" x="-406.4" y="358.14"/>
 <instance part="OK3" gate="B" x="-363.22" y="358.14"/>
 <instance part="OK4" gate="A" x="-322.58" y="358.14"/>
-<instance part="R2" gate="G$1" x="-614.68" y="340.36" rot="R90"/>
 <instance part="R5" gate="G$1" x="-579.12" y="208.28" rot="R270"/>
 <instance part="R6" gate="G$1" x="-568.96" y="215.9" rot="R270"/>
+<instance part="R1" gate="G$1" x="-523.24" y="340.36" rot="R180"/>
+<instance part="R3" gate="G$1" x="-482.6" y="340.36" rot="R180"/>
+<instance part="R4" gate="G$1" x="-408.94" y="340.36" rot="R180"/>
+<instance part="R7" gate="G$1" x="-365.76" y="340.36" rot="R180"/>
+<instance part="R8" gate="G$1" x="-322.58" y="340.36" rot="R180"/>
+<instance part="R9" gate="G$1" x="-566.42" y="340.36" rot="R180"/>
+<instance part="R2" gate="G$1" x="-322.58" y="345.44" rot="R180"/>
+<instance part="R10" gate="G$1" x="-365.76" y="345.44" rot="R180"/>
+<instance part="R11" gate="G$1" x="-408.94" y="345.44" rot="R180"/>
+<instance part="R12" gate="G$1" x="-482.6" y="345.44" rot="R180"/>
+<instance part="R13" gate="G$1" x="-523.24" y="345.44" rot="R180"/>
+<instance part="R14" gate="G$1" x="-566.42" y="345.44" rot="R180"/>
 </instances>
 <busses>
 </busses>
@@ -8110,9 +8200,61 @@ Source: 153385-da-01-en-Optocoupler_ILD205-T.pdf</description>
 <pinref part="IC2" gate="P" pin="GND"/>
 <wire x1="-589.28" y1="276.86" x2="-614.68" y2="276.86" width="0.1524" layer="91"/>
 <junction x="-614.68" y="276.86"/>
-<wire x1="-614.68" y1="304.8" x2="-614.68" y2="335.28" width="0.1524" layer="91"/>
+<wire x1="-614.68" y1="304.8" x2="-614.68" y2="337.82" width="0.1524" layer="91"/>
 <junction x="-614.68" y="304.8"/>
-<pinref part="R2" gate="G$1" pin="1"/>
+<pinref part="R9" gate="G$1" pin="1"/>
+<wire x1="-561.34" y1="340.36" x2="-561.34" y2="337.82" width="0.1524" layer="91"/>
+<wire x1="-561.34" y1="337.82" x2="-581.66" y2="337.82" width="0.1524" layer="91"/>
+<pinref part="R1" gate="G$1" pin="1"/>
+<wire x1="-581.66" y1="337.82" x2="-614.68" y2="337.82" width="0.1524" layer="91"/>
+<wire x1="-561.34" y1="337.82" x2="-535.94" y2="337.82" width="0.1524" layer="91"/>
+<wire x1="-535.94" y1="337.82" x2="-518.16" y2="337.82" width="0.1524" layer="91"/>
+<wire x1="-518.16" y1="337.82" x2="-518.16" y2="340.36" width="0.1524" layer="91"/>
+<junction x="-561.34" y="337.82"/>
+<pinref part="R3" gate="G$1" pin="1"/>
+<wire x1="-518.16" y1="337.82" x2="-492.76" y2="337.82" width="0.1524" layer="91"/>
+<wire x1="-492.76" y1="337.82" x2="-477.52" y2="337.82" width="0.1524" layer="91"/>
+<wire x1="-477.52" y1="337.82" x2="-477.52" y2="340.36" width="0.1524" layer="91"/>
+<junction x="-518.16" y="337.82"/>
+<pinref part="R4" gate="G$1" pin="1"/>
+<wire x1="-477.52" y1="337.82" x2="-421.64" y2="337.82" width="0.1524" layer="91"/>
+<wire x1="-421.64" y1="337.82" x2="-403.86" y2="337.82" width="0.1524" layer="91"/>
+<wire x1="-403.86" y1="337.82" x2="-403.86" y2="340.36" width="0.1524" layer="91"/>
+<junction x="-477.52" y="337.82"/>
+<pinref part="R7" gate="G$1" pin="1"/>
+<wire x1="-403.86" y1="337.82" x2="-381" y2="337.82" width="0.1524" layer="91"/>
+<wire x1="-381" y1="337.82" x2="-360.68" y2="337.82" width="0.1524" layer="91"/>
+<wire x1="-360.68" y1="337.82" x2="-360.68" y2="340.36" width="0.1524" layer="91"/>
+<junction x="-403.86" y="337.82"/>
+<pinref part="R8" gate="G$1" pin="1"/>
+<wire x1="-360.68" y1="337.82" x2="-342.9" y2="337.82" width="0.1524" layer="91"/>
+<wire x1="-342.9" y1="337.82" x2="-317.5" y2="337.82" width="0.1524" layer="91"/>
+<wire x1="-317.5" y1="337.82" x2="-317.5" y2="340.36" width="0.1524" layer="91"/>
+<junction x="-360.68" y="337.82"/>
+<pinref part="R14" gate="G$1" pin="2"/>
+<wire x1="-571.5" y1="345.44" x2="-581.66" y2="345.44" width="0.1524" layer="91"/>
+<wire x1="-581.66" y1="345.44" x2="-581.66" y2="337.82" width="0.1524" layer="91"/>
+<junction x="-581.66" y="337.82"/>
+<pinref part="R13" gate="G$1" pin="2"/>
+<wire x1="-528.32" y1="345.44" x2="-535.94" y2="345.44" width="0.1524" layer="91"/>
+<wire x1="-535.94" y1="345.44" x2="-535.94" y2="337.82" width="0.1524" layer="91"/>
+<junction x="-535.94" y="337.82"/>
+<pinref part="R12" gate="G$1" pin="2"/>
+<wire x1="-487.68" y1="345.44" x2="-492.76" y2="345.44" width="0.1524" layer="91"/>
+<wire x1="-492.76" y1="345.44" x2="-492.76" y2="337.82" width="0.1524" layer="91"/>
+<junction x="-492.76" y="337.82"/>
+<pinref part="R11" gate="G$1" pin="2"/>
+<wire x1="-414.02" y1="345.44" x2="-421.64" y2="345.44" width="0.1524" layer="91"/>
+<wire x1="-421.64" y1="345.44" x2="-421.64" y2="337.82" width="0.1524" layer="91"/>
+<junction x="-421.64" y="337.82"/>
+<pinref part="R10" gate="G$1" pin="2"/>
+<wire x1="-370.84" y1="345.44" x2="-381" y2="345.44" width="0.1524" layer="91"/>
+<wire x1="-381" y1="345.44" x2="-381" y2="337.82" width="0.1524" layer="91"/>
+<junction x="-381" y="337.82"/>
+<pinref part="R2" gate="G$1" pin="2"/>
+<wire x1="-327.66" y1="345.44" x2="-342.9" y2="345.44" width="0.1524" layer="91"/>
+<wire x1="-342.9" y1="345.44" x2="-342.9" y2="337.82" width="0.1524" layer="91"/>
+<junction x="-342.9" y="337.82"/>
 </segment>
 </net>
 <net name="N$9" class="0">
@@ -8576,10 +8718,14 @@ Source: 153385-da-01-en-Optocoupler_ILD205-T.pdf</description>
 <wire x1="-441.96" y1="220.98" x2="-454.66" y2="220.98" width="0.1524" layer="91"/>
 <wire x1="-454.66" y1="220.98" x2="-454.66" y2="304.8" width="0.1524" layer="91"/>
 <junction x="-454.66" y="304.8"/>
-<wire x1="-350.52" y1="304.8" x2="-350.52" y2="355.6" width="0.1524" layer="91"/>
+<wire x1="-350.52" y1="304.8" x2="-350.52" y2="345.44" width="0.1524" layer="91"/>
 <junction x="-350.52" y="304.8"/>
 <pinref part="OK3" gate="B" pin="EMIT"/>
+<wire x1="-350.52" y1="345.44" x2="-350.52" y2="355.6" width="0.1524" layer="91"/>
 <wire x1="-350.52" y1="355.6" x2="-355.6" y2="355.6" width="0.1524" layer="91"/>
+<pinref part="R10" gate="G$1" pin="1"/>
+<wire x1="-360.68" y1="345.44" x2="-350.52" y2="345.44" width="0.1524" layer="91"/>
+<junction x="-350.52" y="345.44"/>
 </segment>
 </net>
 <net name="N$69" class="0">
@@ -8613,8 +8759,12 @@ Source: 153385-da-01-en-Optocoupler_ILD205-T.pdf</description>
 <wire x1="-452.12" y1="226.06" x2="-452.12" y2="314.96" width="0.1524" layer="91"/>
 <junction x="-452.12" y="314.96"/>
 <pinref part="OK3" gate="A" pin="EMIT"/>
-<wire x1="-398.78" y1="355.6" x2="-398.78" y2="314.96" width="0.1524" layer="91"/>
+<wire x1="-398.78" y1="355.6" x2="-398.78" y2="345.44" width="0.1524" layer="91"/>
 <junction x="-398.78" y="314.96"/>
+<pinref part="R11" gate="G$1" pin="1"/>
+<wire x1="-398.78" y1="345.44" x2="-398.78" y2="314.96" width="0.1524" layer="91"/>
+<wire x1="-403.86" y1="345.44" x2="-398.78" y2="345.44" width="0.1524" layer="91"/>
+<junction x="-398.78" y="345.44"/>
 </segment>
 </net>
 <net name="N$70" class="0">
@@ -8648,8 +8798,12 @@ Source: 153385-da-01-en-Optocoupler_ILD205-T.pdf</description>
 <wire x1="-76.2" y1="228.6" x2="-93.98" y2="228.6" width="0.1524" layer="91"/>
 <wire x1="-93.98" y1="228.6" x2="-93.98" y2="327.66" width="0.1524" layer="91"/>
 <pinref part="OK2" gate="A" pin="EMIT"/>
-<wire x1="-472.44" y1="355.6" x2="-472.44" y2="327.66" width="0.1524" layer="91"/>
+<wire x1="-472.44" y1="355.6" x2="-472.44" y2="345.44" width="0.1524" layer="91"/>
 <junction x="-472.44" y="327.66"/>
+<pinref part="R12" gate="G$1" pin="1"/>
+<wire x1="-472.44" y1="345.44" x2="-472.44" y2="327.66" width="0.1524" layer="91"/>
+<wire x1="-477.52" y1="345.44" x2="-472.44" y2="345.44" width="0.1524" layer="91"/>
+<junction x="-472.44" y="345.44"/>
 </segment>
 </net>
 <net name="N$71" class="0">
@@ -8683,8 +8837,12 @@ Source: 153385-da-01-en-Optocoupler_ILD205-T.pdf</description>
 <wire x1="-533.4" y1="215.9" x2="-535.94" y2="215.9" width="0.1524" layer="91"/>
 <wire x1="-535.94" y1="215.9" x2="-535.94" y2="335.28" width="0.1524" layer="91"/>
 <pinref part="OK1" gate="B" pin="EMIT"/>
-<wire x1="-513.08" y1="355.6" x2="-513.08" y2="335.28" width="0.1524" layer="91"/>
+<wire x1="-513.08" y1="355.6" x2="-513.08" y2="345.44" width="0.1524" layer="91"/>
 <junction x="-513.08" y="335.28"/>
+<pinref part="R13" gate="G$1" pin="1"/>
+<wire x1="-513.08" y1="345.44" x2="-513.08" y2="335.28" width="0.1524" layer="91"/>
+<wire x1="-518.16" y1="345.44" x2="-513.08" y2="345.44" width="0.1524" layer="91"/>
+<junction x="-513.08" y="345.44"/>
 </segment>
 </net>
 <net name="N$6" class="0">
@@ -8707,7 +8865,11 @@ Source: 153385-da-01-en-Optocoupler_ILD205-T.pdf</description>
 <wire x1="-546.1" y1="302.26" x2="-312.42" y2="302.26" width="0.1524" layer="91"/>
 <pinref part="OK4" gate="A" pin="EMIT"/>
 <wire x1="-314.96" y1="355.6" x2="-312.42" y2="355.6" width="0.1524" layer="91"/>
-<wire x1="-312.42" y1="355.6" x2="-312.42" y2="302.26" width="0.1524" layer="91"/>
+<wire x1="-312.42" y1="355.6" x2="-312.42" y2="345.44" width="0.1524" layer="91"/>
+<pinref part="R2" gate="G$1" pin="1"/>
+<wire x1="-312.42" y1="345.44" x2="-312.42" y2="302.26" width="0.1524" layer="91"/>
+<wire x1="-317.5" y1="345.44" x2="-312.42" y2="345.44" width="0.1524" layer="91"/>
+<junction x="-312.42" y="345.44"/>
 </segment>
 </net>
 <net name="N$8" class="0">
@@ -8748,36 +8910,20 @@ Source: 153385-da-01-en-Optocoupler_ILD205-T.pdf</description>
 <wire x1="-596.9" y1="281.94" x2="-607.06" y2="281.94" width="0.1524" layer="91"/>
 <wire x1="-607.06" y1="281.94" x2="-607.06" y2="347.98" width="0.1524" layer="91"/>
 <pinref part="OK1" gate="A" pin="EMIT"/>
-<wire x1="-607.06" y1="347.98" x2="-556.26" y2="347.98" width="0.1524" layer="91"/>
+<wire x1="-607.06" y1="347.98" x2="-561.34" y2="347.98" width="0.1524" layer="91"/>
+<wire x1="-561.34" y1="347.98" x2="-556.26" y2="347.98" width="0.1524" layer="91"/>
 <wire x1="-556.26" y1="347.98" x2="-556.26" y2="355.6" width="0.1524" layer="91"/>
+<pinref part="R14" gate="G$1" pin="1"/>
+<wire x1="-561.34" y1="345.44" x2="-561.34" y2="347.98" width="0.1524" layer="91"/>
+<junction x="-561.34" y="347.98"/>
 </segment>
 </net>
 <net name="N$17" class="0">
 <segment>
-<wire x1="-614.68" y1="345.44" x2="-574.04" y2="345.44" width="0.1524" layer="91"/>
-<wire x1="-574.04" y1="345.44" x2="-530.86" y2="345.44" width="0.1524" layer="91"/>
-<wire x1="-530.86" y1="345.44" x2="-490.22" y2="345.44" width="0.1524" layer="91"/>
-<wire x1="-490.22" y1="345.44" x2="-416.56" y2="345.44" width="0.1524" layer="91"/>
-<wire x1="-416.56" y1="345.44" x2="-373.38" y2="345.44" width="0.1524" layer="91"/>
-<wire x1="-373.38" y1="345.44" x2="-332.74" y2="345.44" width="0.1524" layer="91"/>
-<pinref part="OK4" gate="A" pin="C"/>
-<wire x1="-332.74" y1="355.6" x2="-332.74" y2="345.44" width="0.1524" layer="91"/>
-<pinref part="OK3" gate="B" pin="C"/>
-<wire x1="-373.38" y1="355.6" x2="-373.38" y2="345.44" width="0.1524" layer="91"/>
-<junction x="-373.38" y="345.44"/>
-<pinref part="OK3" gate="A" pin="C"/>
-<wire x1="-416.56" y1="355.6" x2="-416.56" y2="345.44" width="0.1524" layer="91"/>
-<junction x="-416.56" y="345.44"/>
-<pinref part="OK2" gate="A" pin="C"/>
-<wire x1="-490.22" y1="355.6" x2="-490.22" y2="345.44" width="0.1524" layer="91"/>
-<junction x="-490.22" y="345.44"/>
-<pinref part="OK1" gate="B" pin="C"/>
-<wire x1="-530.86" y1="355.6" x2="-530.86" y2="345.44" width="0.1524" layer="91"/>
-<junction x="-530.86" y="345.44"/>
 <pinref part="OK1" gate="A" pin="C"/>
-<wire x1="-574.04" y1="355.6" x2="-574.04" y2="345.44" width="0.1524" layer="91"/>
-<junction x="-574.04" y="345.44"/>
-<pinref part="R2" gate="G$1" pin="2"/>
+<wire x1="-574.04" y1="355.6" x2="-574.04" y2="340.36" width="0.1524" layer="91"/>
+<pinref part="R9" gate="G$1" pin="2"/>
+<wire x1="-574.04" y1="340.36" x2="-571.5" y2="340.36" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$20" class="0">
@@ -8796,10 +8942,10 @@ Source: 153385-da-01-en-Optocoupler_ILD205-T.pdf</description>
 <pinref part="JP6" gate="A" pin="2"/>
 <wire x1="-556.26" y1="312.42" x2="-561.34" y2="312.42" width="0.1524" layer="91"/>
 <wire x1="-556.26" y1="330.2" x2="-556.26" y2="312.42" width="0.1524" layer="91"/>
-<wire x1="-556.26" y1="330.2" x2="-495.3" y2="330.2" width="0.1524" layer="91"/>
-<wire x1="-495.3" y1="330.2" x2="-495.3" y2="360.68" width="0.1524" layer="91"/>
+<wire x1="-556.26" y1="330.2" x2="-502.92" y2="330.2" width="0.1524" layer="91"/>
+<wire x1="-502.92" y1="330.2" x2="-502.92" y2="360.68" width="0.1524" layer="91"/>
 <pinref part="OK2" gate="A" pin="A"/>
-<wire x1="-490.22" y1="360.68" x2="-495.3" y2="360.68" width="0.1524" layer="91"/>
+<wire x1="-490.22" y1="360.68" x2="-502.92" y2="360.68" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$29" class="0">
@@ -8833,6 +8979,47 @@ Source: 153385-da-01-en-Optocoupler_ILD205-T.pdf</description>
 <wire x1="-335.28" y1="299.72" x2="-335.28" y2="360.68" width="0.1524" layer="91"/>
 <pinref part="OK4" gate="A" pin="A"/>
 <wire x1="-335.28" y1="360.68" x2="-332.74" y2="360.68" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$72" class="0">
+<segment>
+<pinref part="OK4" gate="A" pin="C"/>
+<wire x1="-332.74" y1="355.6" x2="-332.74" y2="340.36" width="0.1524" layer="91"/>
+<pinref part="R8" gate="G$1" pin="2"/>
+<wire x1="-327.66" y1="340.36" x2="-332.74" y2="340.36" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$32" class="0">
+<segment>
+<pinref part="OK3" gate="B" pin="C"/>
+<wire x1="-373.38" y1="355.6" x2="-373.38" y2="340.36" width="0.1524" layer="91"/>
+<pinref part="R7" gate="G$1" pin="2"/>
+<wire x1="-370.84" y1="340.36" x2="-373.38" y2="340.36" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$76" class="0">
+<segment>
+<pinref part="OK3" gate="A" pin="C"/>
+<wire x1="-416.56" y1="355.6" x2="-416.56" y2="340.36" width="0.1524" layer="91"/>
+<pinref part="R4" gate="G$1" pin="2"/>
+<wire x1="-414.02" y1="340.36" x2="-416.56" y2="340.36" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$77" class="0">
+<segment>
+<pinref part="R3" gate="G$1" pin="2"/>
+<wire x1="-487.68" y1="340.36" x2="-497.84" y2="340.36" width="0.1524" layer="91"/>
+<pinref part="OK2" gate="A" pin="C"/>
+<wire x1="-490.22" y1="355.6" x2="-497.84" y2="355.6" width="0.1524" layer="91"/>
+<wire x1="-497.84" y1="355.6" x2="-497.84" y2="340.36" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$78" class="0">
+<segment>
+<pinref part="OK1" gate="B" pin="C"/>
+<wire x1="-530.86" y1="355.6" x2="-530.86" y2="340.36" width="0.1524" layer="91"/>
+<pinref part="R1" gate="G$1" pin="2"/>
+<wire x1="-530.86" y1="340.36" x2="-528.32" y2="340.36" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

@@ -5872,6 +5872,8 @@ Source: www.kingbright.com</description>
 <part name="SRCK" library="led" deviceset="LED" device="SML1206"/>
 <part name="~G" library="led" deviceset="LED" device="SML1206"/>
 <part name="SER-IN" library="led" deviceset="LED" device="SML1206"/>
+<part name="R5" library="resistor" deviceset="R-US_" device="R2512" value="576"/>
+<part name="POWER" library="led" deviceset="LED" device="SML1206"/>
 </parts>
 <sheets>
 <sheet>
@@ -5922,6 +5924,8 @@ Source: www.kingbright.com</description>
 <instance part="SRCK" gate="G$1" x="-396.24" y="350.52"/>
 <instance part="~G" gate="G$1" x="-353.06" y="350.52"/>
 <instance part="SER-IN" gate="G$1" x="-312.42" y="350.52"/>
+<instance part="R5" gate="G$1" x="-591.82" y="231.14" rot="R180"/>
+<instance part="POWER" gate="G$1" x="-581.66" y="236.22"/>
 </instances>
 <busses>
 </busses>
@@ -6026,7 +6030,12 @@ Source: www.kingbright.com</description>
 <junction x="-398.78" y="368.3"/>
 <pinref part="X1" gate="-1" pin="S"/>
 <wire x1="-576.58" y1="256.54" x2="-591.82" y2="256.54" width="0.1524" layer="91"/>
-<wire x1="-576.58" y1="223.52" x2="-576.58" y2="256.54" width="0.1524" layer="91"/>
+<wire x1="-576.58" y1="223.52" x2="-576.58" y2="243.84" width="0.1524" layer="91"/>
+<pinref part="POWER" gate="G$1" pin="A"/>
+<wire x1="-576.58" y1="243.84" x2="-576.58" y2="256.54" width="0.1524" layer="91"/>
+<wire x1="-581.66" y1="238.76" x2="-581.66" y2="243.84" width="0.1524" layer="91"/>
+<wire x1="-581.66" y1="243.84" x2="-576.58" y2="243.84" width="0.1524" layer="91"/>
+<junction x="-576.58" y="243.84"/>
 </segment>
 </net>
 <net name="GNDA" class="0">
@@ -6323,10 +6332,14 @@ Source: www.kingbright.com</description>
 <wire x1="-327.66" y1="345.44" x2="-342.9" y2="345.44" width="0.1524" layer="91"/>
 <wire x1="-342.9" y1="345.44" x2="-342.9" y2="337.82" width="0.1524" layer="91"/>
 <junction x="-342.9" y="337.82"/>
-<wire x1="-601.98" y1="251.46" x2="-601.98" y2="170.18" width="0.1524" layer="91"/>
+<wire x1="-601.98" y1="251.46" x2="-601.98" y2="231.14" width="0.1524" layer="91"/>
 <pinref part="X1" gate="-2" pin="S"/>
+<wire x1="-601.98" y1="231.14" x2="-601.98" y2="170.18" width="0.1524" layer="91"/>
 <wire x1="-591.82" y1="251.46" x2="-601.98" y2="251.46" width="0.1524" layer="91"/>
 <junction x="-601.98" y="170.18"/>
+<pinref part="R5" gate="G$1" pin="2"/>
+<wire x1="-596.9" y1="231.14" x2="-601.98" y2="231.14" width="0.1524" layer="91"/>
+<junction x="-601.98" y="231.14"/>
 </segment>
 </net>
 <net name="N$9" class="0">
@@ -7113,6 +7126,13 @@ Source: www.kingbright.com</description>
 <pinref part="R2" gate="G$1" pin="1"/>
 <wire x1="-317.5" y1="345.44" x2="-312.42" y2="345.44" width="0.1524" layer="91"/>
 <pinref part="SER-IN" gate="G$1" pin="C"/>
+</segment>
+</net>
+<net name="N$80" class="0">
+<segment>
+<pinref part="POWER" gate="G$1" pin="C"/>
+<pinref part="R5" gate="G$1" pin="1"/>
+<wire x1="-581.66" y1="231.14" x2="-586.74" y2="231.14" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
