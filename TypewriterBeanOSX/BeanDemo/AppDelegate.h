@@ -59,7 +59,10 @@
 - (IBAction) shiftZero:(id) sender;
 - (IBAction) shiftOne:(id) sender;
 - (void) setAll;
-
+- (IBAction) clearAll:(id)sender;
+- (IBAction) sendKeystroke:(id)sender;
+- (IBAction) test8:(id)sender;
+- (void) setBit:(int)bit;
 
 - (void)updateAll;
 

@@ -216,6 +216,65 @@
         
 }
 
+- (IBAction) clearAll:(id)sender {
+        // set SRCLR low then high
+        [bean sendSerialString:@"b"];
+        [bean sendSerialString:@"a"];
+        
+        // set RCK high then low
+        [bean sendSerialString:@"e"];
+        [bean sendSerialString:@"f"];
+}
+
+- (IBAction) sendKeystroke:(id)sender {
+        // set G to low (send keystroke)
+        [bean sendSerialString:@"d"];
+        G.stringValue = @"LOW";
+        
+        // set G to high (stop sending keystroke)
+        [bean sendSerialString:@"c"];
+        G.stringValue = @"HIGH";
+}
+
+- (IBAction) test8:(id)sender {
+        // test all 8 keystrokes on the first shift register
+        
+        // shift in 8 bits
+        for (int key=0;key<8;key++) {
+                NSLog(@"Sending: %d",key);
+                // send the bit
+                [self setBit:key];
+                
+                // send the keystroke
+                [self sendKeystroke:self];
+        }
+        // send keystroke
+        // clear all
+        
+        
+}
+
+- (void) setBit:(int)bit {
+        // input: a number between 0 and 47
+        
+        // clears first
+        // then sets a particular bit by shifting in zeros then the bit
+        
+        // clear
+        //[bean sendSerialString:@"baef"];
+        [self clearAll:self];
+        
+        // first, shift a 1
+        [self shiftOne:self];
+        
+        // now shift 48-bit number of zeros
+        for (int i=0;i<bit;i++) {
+                [self shiftZero:self];
+        }
+}
+
+
+
 /*
  This method is called when connect button pressed and it takes appropriate actions depending on device connection state
  */

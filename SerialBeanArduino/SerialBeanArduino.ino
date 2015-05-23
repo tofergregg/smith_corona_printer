@@ -14,7 +14,7 @@ int pinSet = -1;
 int pinValue = 0;
 
 void setup() {
-  Serial.begin(9600); //open the serial port
+  Serial.begin(57600); //open the serial port
   pinMode(LED, OUTPUT); 
   Serial.println("Type b to start and s to stop blinking of the Arduino LED");
   Serial.print(">"); //simulate prompt
@@ -132,6 +132,6 @@ void loop() {
         Bean.setLed(255,0,0);
     }
   }
-  Bean.sleep(100);
+  Bean.sleep(200);
 }
 
