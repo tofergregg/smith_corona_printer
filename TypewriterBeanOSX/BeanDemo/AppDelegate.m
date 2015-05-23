@@ -20,6 +20,7 @@
 @synthesize timeStep;
 @synthesize scanTable;
 @synthesize SRCLR,G,RCK,SRCK,SER_IN,SHIFT,LED;
+@synthesize byteQueue;
 
 - (void)awakeFromNib {
 
@@ -39,6 +40,17 @@
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
         [formatter setMaximumFractionDigits:3];
+        
+        // set up byteQueue
+        byteQueue = [[NSMutableArray alloc] init];
+        
+        
+        // set up timer to send bytes to bean every 50ms seconds
+        [NSTimer scheduledTimerWithTimeInterval:0.001
+                                         target:self
+                                       selector:@selector(sendSerialByte)
+                                       userInfo:nil
+                                        repeats:YES];
 }
 
 /*
@@ -58,186 +70,189 @@
 - (IBAction) toggleSRCLR:(id)sender {
         NSLog(@"SRCLR pressed");
         if ([SRCLR.stringValue isEqual: @"LOW"]) {
-                NSLog(@"Changing to HIGH");
-                [bean sendSerialString:@"a"];
+                // NSLog(@"Changing to HIGH");
+                [self addStringToSerialQueue:@"a"];
                 SRCLR.stringValue = @"HIGH";
         }
         else {
-                NSLog(@"Changing to LOW");
-                [bean sendSerialString:@"b"];
+                // NSLog(@"Changing to LOW");
+                [self addStringToSerialQueue:@"b"];
                 SRCLR.stringValue = @"LOW";
         }
         
 }
 - (IBAction) toggleG:(id)sender {
         if ([G.stringValue isEqual: @"LOW"]) {
-                NSLog(@"Changing to HIGH");
-                [bean sendSerialString:@"c"];
+                // NSLog(@"Changing to HIGH");
+                [self addStringToSerialQueue:@"c"];
                 G.stringValue = @"HIGH";
         }
         else {
-                NSLog(@"Changing to LOW");
-                [bean sendSerialString:@"d"];
+                // NSLog(@"Changing to LOW");
+                [self addStringToSerialQueue:@"d"];
                 G.stringValue = @"LOW";
         }
 }
 - (IBAction) toggleRCK:(id)sender {
         if ([RCK.stringValue isEqual: @"LOW"]) {
-                NSLog(@"Changing to HIGH");
-                [bean sendSerialString:@"e"];
+                // NSLog(@"Changing to HIGH");
+                [self addStringToSerialQueue:@"e"];
                 RCK.stringValue = @"HIGH";
         }
         else {
-                NSLog(@"Changing to LOW");
-                [bean sendSerialString:@"f"];
+                // NSLog(@"Changing to LOW");
+                [self addStringToSerialQueue:@"f"];
                 RCK.stringValue = @"LOW";
         }
         
 }
 - (IBAction) toggleSRCK:(id)sender {
         if ([SRCK.stringValue isEqual: @"LOW"]) {
-                NSLog(@"Changing to HIGH");
-                [bean sendSerialString:@"g"];
+                // NSLog(@"Changing to HIGH");
+                [self addStringToSerialQueue:@"g"];
                 SRCK.stringValue = @"HIGH";
         }
         else {
-                NSLog(@"Changing to LOW");
-                [bean sendSerialString:@"h"];
+                // NSLog(@"Changing to LOW");
+                [self addStringToSerialQueue:@"h"];
                 SRCK.stringValue = @"LOW";
         }
 }
 - (IBAction) toggleSER_IN:(id)sender {
         if ([SER_IN.stringValue isEqual: @"0"]) {
-                NSLog(@"Changing to 1");
-                [bean sendSerialString:@"i"];
+                // NSLog(@"Changing to 1");
+                [self addStringToSerialQueue:@"i"];
                 SER_IN.stringValue = @"1";
         }
         else {
-                NSLog(@"Changing to 0");
-                [bean sendSerialString:@"j"];
+                // NSLog(@"Changing to 0");
+                [self addStringToSerialQueue:@"j"];
                 SER_IN.stringValue = @"0";
         }
         
 }
 - (IBAction) toggleSHIFT:(id)sender {
         if ([SHIFT.stringValue isEqual: @"OFF"]) {
-                NSLog(@"Changing to ON");
-                [bean sendSerialString:@"k"];
+                // NSLog(@"Changing to ON");
+                [self addStringToSerialQueue:@"k"];
                 SHIFT.stringValue = @"ON";
         }
         else {
-                NSLog(@"Changing to OFF");
-                [bean sendSerialString:@"l"];
+                // NSLog(@"Changing to OFF");
+                [self addStringToSerialQueue:@"l"];
                 SHIFT.stringValue = @"OFF";
         }
         
 }
 - (IBAction) toggleLED:(id)sender {
         if ([LED.stringValue isEqual: @"OFF"]) {
-                NSLog(@"Changing to ON");
-                [bean sendSerialString:@"m"];
+                // NSLog(@"Changing to ON");
+                [self addStringToSerialQueue:@"m"];
                 LED.stringValue = @"ON";
         }
         else {
-                NSLog(@"Changing to OFF");
-                [bean sendSerialString:@"n"];
+                // NSLog(@"Changing to OFF");
+                [self addStringToSerialQueue:@"n"];
                 LED.stringValue = @"OFF";
         }
 }
 
 - (void) shiftBit {
-        NSLog(@"Changing SRCK to HIGH");
-        [bean sendSerialString:@"g"];
+        // NSLog(@"Changing SRCK to HIGH");
+        [self addStringToSerialQueue:@"g"];
         
-        NSLog(@"Changing SRCK to LOW");
-        [bean sendSerialString:@"h"];
+        // NSLog(@"Changing SRCK to LOW");
+        [self addStringToSerialQueue:@"h"];
         
-        NSLog(@"Changing RCK to HIGH");
-        [bean sendSerialString:@"e"];
+        // NSLog(@"Changing RCK to HIGH");
+        [self addStringToSerialQueue:@"e"];
         
-        NSLog(@"Changing RCK to LOW");
-        [bean sendSerialString:@"f"];
+        // NSLog(@"Changing RCK to LOW");
+        [self addStringToSerialQueue:@"f"];
 }
 
 - (IBAction)shiftZero:(id)sender {
-        NSLog(@"Changing to 0");
-        [bean sendSerialString:@"j"];
+        // NSLog(@"Changing to 0");
+        [self addStringToSerialQueue:@"j"];
         [self shiftBit];
 }
 
 - (IBAction)shiftOne:(id)sender {
-        NSLog(@"Changing to 1");
-        [bean sendSerialString:@"i"];
+        // NSLog(@"Changing to 1");
+        [self addStringToSerialQueue:@"i"];
         [self shiftBit];
 }
 
 - (void) setAll {
         if ([SRCLR.stringValue isEqual: @"HIGH"]) {
-                [bean sendSerialString:@"a"];
+                [self addStringToSerialQueue:@"a"];
         }
         else {
-                [bean sendSerialString:@"b"];
+                [self addStringToSerialQueue:@"b"];
         }
         
         if ([G.stringValue isEqual: @"HIGH"]) {
-                [bean sendSerialString:@"c"];
+                [self addStringToSerialQueue:@"c"];
         }
         else {
-                [bean sendSerialString:@"d"];
+                [self addStringToSerialQueue:@"d"];
         }
         
         if ([RCK.stringValue isEqual: @"HIGH"]) {
-                [bean sendSerialString:@"e"];
+                [self addStringToSerialQueue:@"e"];
         }
         else {
-                [bean sendSerialString:@"f"];
+                [self addStringToSerialQueue:@"f"];
         }
         
         if ([SRCK.stringValue isEqual: @"HIGH"]) {
-                [bean sendSerialString:@"g"];
+                [self addStringToSerialQueue:@"g"];
         }
         else {
-                [bean sendSerialString:@"h"];
+                [self addStringToSerialQueue:@"h"];
         }
         
         if ([SER_IN.stringValue isEqual: @"1"]) {
-                [bean sendSerialString:@"i"];
+                [self addStringToSerialQueue:@"i"];
         }
         else {
-                [bean sendSerialString:@"j"];
+                [self addStringToSerialQueue:@"j"];
         }
         
         if ([SHIFT.stringValue isEqual: @"OFF"]) {
-                [bean sendSerialString:@"k"];
+                [self addStringToSerialQueue:@"k"];
         }
         else {
-                [bean sendSerialString:@"l"];
+                [self addStringToSerialQueue:@"l"];
         }
         
 }
 
 - (IBAction) clearAll:(id)sender {
         // set SRCLR low then high
-        [bean sendSerialString:@"b"];
-        [bean sendSerialString:@"a"];
+        [self addStringToSerialQueue:@"b"];
+        [self addStringToSerialQueue:@"a"];
         
         // set RCK high then low
-        [bean sendSerialString:@"e"];
-        [bean sendSerialString:@"f"];
+        [self addStringToSerialQueue:@"e"];
+        [self addStringToSerialQueue:@"f"];
 }
 
 - (IBAction) sendKeystroke:(id)sender {
         // set G to low (send keystroke)
-        [bean sendSerialString:@"d"];
+        [self addStringToSerialQueue:@"d"];
         G.stringValue = @"LOW";
         
         // set G to high (stop sending keystroke)
-        [bean sendSerialString:@"c"];
+        [self addStringToSerialQueue:@"c"];
         G.stringValue = @"HIGH";
 }
 
 - (IBAction) test8:(id)sender {
         // test all 8 keystrokes on the first shift register
+        // set G high for good measure
+        [self addStringToSerialQueue:@"c"];
+        [self addStringToSerialQueue:@"c"];
         
         // shift in 8 bits
         for (int key=0;key<8;key++) {
@@ -256,12 +271,12 @@
 
 - (void) setBit:(int)bit {
         // input: a number between 0 and 47
-        
+        /*
         // clears first
         // then sets a particular bit by shifting in zeros then the bit
         
         // clear
-        //[bean sendSerialString:@"baef"];
+        //[self addStringToSerialQueue:@"baef"];
         [self clearAll:self];
         
         // first, shift a 1
@@ -270,10 +285,30 @@
         // now shift 48-bit number of zeros
         for (int i=0;i<bit;i++) {
                 [self shiftZero:self];
+        }*/
+        // need to send bit+1 so we actually send a byte (zero doesn't get sent?)
+        [self addStringToSerialQueue:[NSString stringWithFormat:@"%c",bit+1]];
+}
+
+// add a serial byte to the serial queue
+- (void) addStringToSerialQueue:(NSString *)str {
+        // adds each character to the queue, one after another
+        for (uint i=0;i<[str length];i++) {
+                NSString *oneChar = [NSString stringWithFormat:@"%c",
+                                     [str characterAtIndex:i]];
+                [byteQueue addObject:oneChar];
         }
 }
 
-
+// send a serial byte and wait to send the next one
+- (void) sendSerialByte {
+        if ([byteQueue count] > 0) {
+                NSString *aByte = [byteQueue objectAtIndex:0];
+                [byteQueue removeObjectAtIndex:0];
+                [self.bean sendSerialString:aByte];
+                NSLog(@"Sent:%@",aByte);
+        }
+}
 
 /*
  This method is called when connect button pressed and it takes appropriate actions depending on device connection state
@@ -472,6 +507,67 @@
         [threadLock unlock];
 
         [beanManager disconnectBean:bean error:nil];
+}
+
+- (void)bean:(PTDBean *)bean serialDataReceived:(NSData *)data {
+        // will receive a bunch of bytes
+        NSString* bytesReceived;
+        
+        bytesReceived = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+        
+        switch ([bytesReceived characterAtIndex:0]) {
+                case 'a':
+                        NSLog(@"%@",@"SRCLR High");
+                        break;
+                case 'b':
+                        NSLog(@"%@",@"SRCLR Low");
+                        break;
+
+                case 'c':
+                        NSLog(@"%@",@"G High");
+                        break;
+
+                case 'd':
+                        NSLog(@"%@",@"G Low");
+                        break;
+
+                case 'e':
+                        NSLog(@"%@",@"RCK High");
+                        break;
+
+                case 'f':
+                        NSLog(@"%@",@"RCK Low");
+                        break;
+
+                case 'g':
+                        NSLog(@"%@",@"SRCK High");
+                        break;
+
+                case 'h':
+                        NSLog(@"%@",@"SRCK Low");
+                        break;
+
+                case 'i':
+                        NSLog(@"%@",@"SER IN 1");
+                        break;
+
+                case 'j':
+                        NSLog(@"%@",@"SER IN 0");
+                        break;
+
+                case 'k':
+                        NSLog(@"%@",@"SHIFT ON");
+                        break;
+
+                case 'l':
+                        NSLog(@"%@",@"SHIFT OFF");
+                        break;
+
+                default:
+                        NSLog(@"%@",bytesReceived);
+        }
+        //NSLog(@"Received from Bean:%@",bytesReceived);
+        
 }
 
 @end

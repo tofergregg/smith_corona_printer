@@ -43,6 +43,8 @@
 @property (assign) IBOutlet NSTextField *SHIFT;
 @property (assign) IBOutlet NSTextField *LED;
 
+@property (nonatomic,retain) NSMutableArray* byteQueue;
+
 - (void) openScanSheet;
 - (IBAction) closeScanSheet:(id)sender;
 - (IBAction) cancelScanSheet:(id)sender;
@@ -63,6 +65,9 @@
 - (IBAction) sendKeystroke:(id)sender;
 - (IBAction) test8:(id)sender;
 - (void) setBit:(int)bit;
+
+- (void) addStringToSerialQueue:(NSString *)str;
+- (void) sendSerialByte;
 
 - (void)updateAll;
 
