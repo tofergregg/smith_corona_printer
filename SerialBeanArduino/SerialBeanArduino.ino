@@ -5,8 +5,7 @@ int pinValue = 0;
 
 void setup() {
   Serial.begin(57600); //open the serial port
-  //Serial.println("Type b to start and s to stop blinking of the Arduino ");
-  //Serial.print(">"); //simulate prompt
+
   // set all pins to out
   for (int i=0;i<6;i++) {
     pinMode(i,OUTPUT);
