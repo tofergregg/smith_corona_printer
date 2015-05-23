@@ -1,13 +1,3 @@
-/*
-Terminal2Arduino
-Start OS X terminal.app
-Find serial device name: ls /dev/tty.*
-Open terminal session: screen [serial device name] 9600 
-Close session: ctrl-A ctrl-\
-\ = shift-alt-7 on some keyboards
-*/
-
-#define LED 13 
 byte inbyte = 0;
 boolean active = false;
 int pinSet = -1;
@@ -15,8 +5,7 @@ int pinValue = 0;
 
 void setup() {
   Serial.begin(57600); //open the serial port
-  pinMode(LED, OUTPUT); 
-  //Serial.println("Type b to start and s to stop blinking of the Arduino LED");
+  //Serial.println("Type b to start and s to stop blinking of the Arduino ");
   //Serial.print(">"); //simulate prompt
   // set all pins to out
   for (int i=0;i<6;i++) {
@@ -44,39 +33,39 @@ void loop() {
     pinSet = -2; // don't do anything else after this is finished
     // first clear
     digitalWrite(3,0); // SRCLR low
-    //delay(40);
+    
     digitalWrite(3,1); // SRCLR high
-    //delay(40);
+    
     digitalWrite(A0,1); // RCK high
-    //delay(40);
+    
     digitalWrite(A0,0); // RCK low
-    //delay(40);
+    
     // shift a 1
     digitalWrite(4,1); // SER IN high
-    //delay(40);
+    
     
     digitalWrite(2,1); // SRCK high
-    //delay(40);
+    
     digitalWrite(2,0); // SRCK low
-    //delay(40);
+    
     digitalWrite(A0,1); // RCK high
-    //delay(40);
+    
     digitalWrite(A0,0); // RCK low
-    //delay(40);
+    
     
     // shift inbyte number of 0s
     digitalWrite(4,0); // SER IN low
-    //delay(40);
+    
 
     for (int i=0;i<inbyte;i++) {
       digitalWrite(2,1); // SRCK high
-      //delay(40);
+      
       digitalWrite(2,0); // SRCK low
-      //delay(40);
+      
       digitalWrite(A0,1); // RCK high
-      //delay(40);
+      
       digitalWrite(A0,0); // RCK low
-      //delay(40);
+      
     }
     Serial.write('Z');
   }
