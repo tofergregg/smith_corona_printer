@@ -25,6 +25,7 @@
                 <outlet property="connectionProgress" destination="m6a-0d-UCz" id="l66-y9-oih"/>
                 <outlet property="scanSheet" destination="MmS-de-RYj" id="Ay6-gJ-mCs"/>
                 <outlet property="scanTable" destination="32U-JG-wYd" id="oQe-fM-fyu"/>
+                <outlet property="textToSend" destination="6VP-LV-e4d" id="tYe-oq-9SQ"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -147,10 +148,10 @@
         <window title="TypewriterBean" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="305" height="354"/>
+            <rect key="contentRect" x="335" y="390" width="320" height="354"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="305" height="354"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="354"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="m6a-0d-UCz">
@@ -343,9 +344,27 @@
                             <action selector="test8:" target="Voe-Tx-rLC" id="RiX-Nz-NcL"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jGz-Z9-U6S">
+                        <rect key="frame" x="161" y="72" width="145" height="32"/>
+                        <buttonCell key="cell" type="push" title="Send (23456789)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nTs-kq-gm8">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="sendText:" target="Voe-Tx-rLC" id="n7j-l7-RfU"/>
+                        </connections>
+                    </button>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6VP-LV-e4d">
+                        <rect key="frame" x="167" y="49" width="133" height="22"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="23456789" drawsBackground="YES" id="eSa-DA-R2z">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="324.5" y="338"/>
+            <point key="canvasLocation" x="273" y="341"/>
         </window>
         <window title="Scan for Bean" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="MmS-de-RYj">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>

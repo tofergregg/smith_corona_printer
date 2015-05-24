@@ -42,6 +42,7 @@
 @property (assign) IBOutlet NSTextField *SER_IN;
 @property (assign) IBOutlet NSTextField *SHIFT;
 @property (assign) IBOutlet NSTextField *LED;
+@property (assign) IBOutlet NSTextField *textToSend;
 
 @property (nonatomic,retain) NSMutableArray* byteQueue;
 
@@ -64,9 +65,11 @@
 - (IBAction) clearAll:(id)sender;
 - (IBAction) sendKeystroke:(id)sender;
 - (IBAction) test8:(id)sender;
+- (IBAction) sendText:(id)sender;
 - (void) setBit:(int)bit;
 
 - (void) addStringToSerialQueue:(NSString *)str;
+- (void) sendSpecialCommand:(NSString *)str;
 - (void) sendSerialByte;
 
 - (void)updateAll;
