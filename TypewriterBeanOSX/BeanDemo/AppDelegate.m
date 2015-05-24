@@ -296,9 +296,56 @@
         [byteQueue addObject:data];
 }
 
+- (NSString *)replaceForTypewriter:(NSString *)str {
+        NSString *allowedChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ234567890@#$%¢&*()-_¼½:;'\".,/? \n";
+        
+        NSCharacterSet *allowedCharacterSet = [NSCharacterSet characterSetWithCharactersInString:allowedChars];
+        
+
+        // replace the following characters:
+        // 1 with l
+        // ‘ with '
+        // ’ with '
+        // ` with '
+        // ” with "
+        // ‟ with "
+
+        // All other characters should be replaced
+        // with a space
+        NSMutableString *newStr = [[NSMutableString alloc] init];
+        [newStr setString:str];
+        
+        [newStr replaceOccurrencesOfString:@"1"withString:@"l" options:NSLiteralSearch range:NSMakeRange(0,[newStr length])];
+        
+        [newStr replaceOccurrencesOfString:@"‘"withString:@"'" options:NSLiteralSearch range:NSMakeRange(0,[newStr length])];
+        
+        [newStr replaceOccurrencesOfString:@"’"withString:@"'" options:NSLiteralSearch range:NSMakeRange(0,[newStr length])];
+        
+        [newStr replaceOccurrencesOfString:@"`"withString:@"'" options:NSLiteralSearch range:NSMakeRange(0,[newStr length])];
+        
+        [newStr replaceOccurrencesOfString:@"“"withString:@"\"" options:NSLiteralSearch range:NSMakeRange(0,[newStr length])];
+        
+        [newStr replaceOccurrencesOfString:@"”"withString:@"\"" options:NSLiteralSearch range:NSMakeRange(0,[newStr length])];
+        
+        // now walk through the entire string and change non-
+        // printable characters to spaces
+        for (int i=0;i<[newStr length];i++) {
+                unichar c = [newStr characterAtIndex:i];
+                if (![allowedCharacterSet characterIsMember:c]) {
+                        [newStr replaceCharactersInRange:NSMakeRange(i, 1) withString:@" "];
+                }
+        }
+        
+        NSLog(@"typewriter compatible string:%@",newStr);
+        
+        return [NSString stringWithString:newStr];
+}
+
 // add a string of characters to the serial queue
 - (void) addStringToSerialQueue:(NSString *)str {
         // adds each character to the queue, one after another
+        // first, replace non-ascii characters
+        [self replaceForTypewriter:str];
         for (uint i=0;i<[str length];i++) {
                 unsigned char oneChar = [str characterAtIndex:i];
                 NSData *data = [NSData dataWithBytes:&oneChar length:1];

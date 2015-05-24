@@ -71,7 +71,7 @@
 - (void) addStringToSerialQueue:(NSString *)str;
 - (void) sendSpecialCommand:(NSString *)str;
 - (void) sendSerialByte;
-
+- (NSString *)replaceForTypewriter:(NSString *)str;
 - (void)updateAll;
 
 @end
