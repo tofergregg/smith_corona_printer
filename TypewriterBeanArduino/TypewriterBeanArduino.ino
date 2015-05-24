@@ -27,13 +27,14 @@
 #define _return	14
 #define _k	15
 
-#define _b	4
+#define _comma	0
+#define _slash	1
 #define _m	2
-#define _n	 8
-#define _comma	 8
-#define _period	7
-#define _slash	 8
+// 3 undefined
+#define _b	4
 #define _space	5
+#define _n	6
+#define _period	7
 
 #define _x	0
 #define _f	1
