@@ -42,7 +42,7 @@
 @property (assign) IBOutlet NSTextField *SER_IN;
 @property (assign) IBOutlet NSTextField *SHIFT;
 @property (assign) IBOutlet NSTextField *LED;
-@property (assign) IBOutlet NSTextField *textToSend;
+@property (assign) IBOutlet NSTextView *textToSend;
 
 @property (nonatomic,retain) NSMutableArray* byteQueue;
 

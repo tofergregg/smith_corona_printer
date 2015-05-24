@@ -263,7 +263,7 @@
 
 - (IBAction) sendText:(id)sender {
         // send the text from textToSend
-        [self addStringToSerialQueue:textToSend.stringValue];
+        [self addStringToSerialQueue:textToSend.string];
 }
 
 - (void) setBit:(int)bit {
