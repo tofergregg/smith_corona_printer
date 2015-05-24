@@ -8,74 +8,79 @@
 #define LED	10
 
 // letter definitions
-#define _a	1
-#define _b	1
-#define _c	1
-#define _d	1
-#define _e	1
-#define _f	1
-#define _g	1
-#define _h	1
-#define _i	1
-#define _j	1
-#define _k	1
-#define _l	1
-#define _m	1
-#define _n	1
-#define _o	1
-#define _p	1
-#define _q	1
-#define _r	1
-#define _s	1
-#define _t	1
-#define _u	1
-#define _v	1
-#define _w	1
-#define _x	1
-#define _y	1
-#define _z	1
-#define _2	7
+
+#define _5	0
+#define _9	1
+#define _7	2
+#define _6	3
 #define _3	4
 #define _4	5
-#define _5	0
-#define _6	3
-#define _7	2
 #define _8	6
-#define _9	1
+#define _2	7
+
+#define _apost	8
+#define _l	9
+#define _j	10
+#define _semic	11
+#define _h	12
+// 13 undefined
+#define _return	14
+#define _k	15
+
+#define _b	4
+#define _m	2
+#define _n	 8
+#define _comma	 8
+#define _period	7
+#define _slash	 8
+#define _space	5
+
+#define _x	0
+#define _f	1
+#define _d	2
+#define _c	3
+#define _z	4
+#define _v	5
+#define _s	6
+#define _g	7
+
+#define _o	0
+#define _i	1
+#define _half	2
+#define _0	3
+#define _p	4
+// 5 undefined
+#define _backsp	6
+#define _u	7
+
+
+#define _q	0
+#define _r	1
+#define _y	2
+#define _e	3
+#define _a	4
+#define _w	5
+#define _t	6
+// 7 undefined
+
 #define _excl	1
-#define _at	1
-#define _hash	1
-#define _dollar	1
-#define _perc	1
+
 #define _cent	1
-#define _amp	1
-#define _aster	1
-#define _lparen	1
-#define _rparen	1
+
 #define _dash	1
-#define _uscore	1
-#define _half	1
+
 #define _quart	1
-#define _semic	1
-#define _colon	1
-#define _apost	1
-#define _quote	1
-#define _comma	1
-#define _period	1
-#define _slash	1
-#define _quest	1
-#define _space	1
+
 #define _shift	1
-#define _return	1
-#define _backsp	1
 
 byte inbyte = 0;
 boolean active = false;
 int pinSet = -1;
 int pinValue = 0;
-int shift_amt = 0;
+int shiftAmt = 0;
 int shifted = 0; // boolean
 int special = 0; // boolean
+int extraTime = 0; // boolean
 
 void setup() {
   Serial.begin(57600); //open the serial port
@@ -151,7 +156,8 @@ void keystroke() {
 void loop() {
   shifted = 0; // start with no shift
   special = 0; // not a special value (e.g., set _G, etc.)
-  shift_amt = 0;
+  shiftAmt = 0;
+  extraTime = 0;
   inbyte = Serial.read(); //Read one byte (one character) from serial port.
   if (inbyte != 255) {
     //Serial.write(inbyte);
@@ -165,189 +171,197 @@ void loop() {
     // don't forget to handle exclamation point as special case
     switch (inbyte) {
   	case 'a':
-		shift_amt = _a;
+		shiftAmt = _a;
 		break;
 	case 'b':
-		shift_amt = _b;
+		shiftAmt = _b;
 		break;
 	case 'c':
-		shift_amt = _c;
+		shiftAmt = _c;
 		break;
 	case 'd':
-		shift_amt = _d;
+		shiftAmt = _d;
 		break;
 	case 'e':
-		shift_amt = _e;
+		shiftAmt = _e;
 		break;
 	case 'f':
-		shift_amt = _f;
+		shiftAmt = _f;
 		break;
 	case 'g':
-		shift_amt = _g;
+		shiftAmt = _g;
 		break;
 	case 'h':
-		shift_amt = _h;
+		shiftAmt = _h;
 		break;
 	case 'i':
-		shift_amt = _i;
+		shiftAmt = _i;
 		break;
 	case 'j':
-		shift_amt = _j;
+		shiftAmt = _j;
 		break;
 	case 'k':
-		shift_amt = _k;
+		shiftAmt = _k;
 		break;
 	case 'l':
-		shift_amt = _l;
+		shiftAmt = _l;
 		break;
 	case 'm':
-		shift_amt = _m;
+		shiftAmt = _m;
 		break;
 	case 'n':
-		shift_amt = _n;
+		shiftAmt = _n;
 		break;
 	case 'o':
-		shift_amt = _o;
+		shiftAmt = _o;
 		break;
 	case 'p':
-		shift_amt = _p;
+		shiftAmt = _p;
 		break;
 	case 'q':
-		shift_amt = _q;
+		shiftAmt = _q;
 		break;
 	case 'r':
-		shift_amt = _r;
+		shiftAmt = _r;
 		break;
 	case 's':
-		shift_amt = _s;
+		shiftAmt = _s;
 		break;
 	case 't':
-		shift_amt = _t;
+		shiftAmt = _t;
 		break;
 	case 'u':
-		shift_amt = _u;
+		shiftAmt = _u;
 		break;
 	case 'v':
-		shift_amt = _v;
+		shiftAmt = _v;
 		break;
 	case 'w':
-		shift_amt = _w;
+		shiftAmt = _w;
 		break;
 	case 'x':
-		shift_amt = _x;
+		shiftAmt = _x;
 		break;
 	case 'y':
-		shift_amt = _y;
+		shiftAmt = _y;
 		break;
 	case 'z':
-		shift_amt = _z;
+		shiftAmt = _z;
+		break;
+        case '1':
+		shiftAmt = _l; // lowercase L
 		break;
 	case '2':
-		shift_amt = _2;
+		shiftAmt = _2;
 		shifted = 1;
 		break;
 	case '3':
-		shift_amt = _3;
+		shiftAmt = _3;
 		shifted = 1;
 		break;
 	case '4':
-		shift_amt = _4;
+		shiftAmt = _4;
 		shifted = 1;
 		break;
 	case '5':
-		shift_amt = _5;
+		shiftAmt = _5;
 		shifted = 1;
 		break;
 	case '6':
-		shift_amt = _6;
+		shiftAmt = _6;
 		shifted = 1;
 		break;
 	case '7':
-		shift_amt = _7;
+		shiftAmt = _7;
 		shifted = 1;
 		break;
 	case '8':
-		shift_amt = _8;
+		shiftAmt = _8;
 		shifted = 1;
 		break;
 	case '9':
-		shift_amt = _9;
+		shiftAmt = _9;
+		shifted = 1;
+		break;
+        case '0':
+		shiftAmt = _0;
 		shifted = 1;
 		break;
 	case '@':
-		shift_amt = _at;
+		shiftAmt = _2;
 		shifted = 1;
 		break;
 	case '#':
-		shift_amt = _hash;
+		shiftAmt = _3;
 		shifted = 1;
 		break;
 	case '$':
-		shift_amt = _dollar;
+		shiftAmt = _4;
 		shifted = 1;
 		break;
 	case '%':
-		shift_amt = _perc;
+		shiftAmt = _5;
 		shifted = 1;
 		break;
 	case '&':
-		shift_amt = _amp;
+		shiftAmt = _7;
 		shifted = 1;
 		break;
 	case '*':
-		shift_amt = _aster;
+		shiftAmt = _8;
 		shifted = 1;
 		break;
 	case '(':
-		shift_amt = _lparen;
+		shiftAmt = _9;
 		shifted = 1;
 		break;
 	case ')':
-		shift_amt = _rparen;
+		shiftAmt = _0;
 		shifted = 1;
 		break;
 	case '-':
-		shift_amt = _dash;
+		shiftAmt = _dash;
 		break;
 	case '_':
-		shift_amt = _uscore;
+		shiftAmt = _dash;
 		shifted = 1;
 		break;
 	case ';':
-		shift_amt = _semic;
+		shiftAmt = _semic;
 		break;
 	case ':':
-		shift_amt = _colon;
+		shiftAmt = _semic;
 		shifted = 1;
 		break;
 	case '\'':
-		shift_amt = _apost;
+  		shiftAmt = _apost;
 		break;
 	case '"':
-		shift_amt = _quote;
+		shiftAmt = _apost;
 		shifted = 1;
 		break;
 	case ',':
-		shift_amt = _comma;
+		shiftAmt = _comma;
 		break;
 	case '.':
-		shift_amt = _period;
+		shiftAmt = _period;
 		break;
 	case '/':
-		shift_amt = _slash;
+		shiftAmt = _slash;
 		break;
 	case '?':
-		shift_amt = _quest;
+		shiftAmt = _slash;
 		shifted = 1;
 		break;
 	case ' ':
-		shift_amt = _space;
+		shiftAmt = _space;
 		break;
 	case '\n':
-		shift_amt = _return;
+		shiftAmt = _return;
+                extraTime = 1;
 		break;
 	case 127: // backspace
-		shift_amt = _backsp;
+		shiftAmt = _backsp;
 		break;
 	case 'a'+127:
 		special = 1;
@@ -453,8 +467,12 @@ void loop() {
                 shiftKeyOn();
 	}
 	
-	setBit(shift_amt); // set bit based on shift amount
+	setBit(shiftAmt); // set bit based on shift amount
 	keystroke(); // go!
+
+        if (extraTime) {
+          delay(100);
+        }
 	
 	if (shifted) {
 		// unset shift
