@@ -30,7 +30,7 @@
 #define _period	16
 #define _b	17 
 #define _space	18 
-// 19 undefined (well, maps to k...)
+#define _shift  19
 #define _m	20 
 #define _slash	21
 #define _comma	22
@@ -71,8 +71,6 @@
 
 #define _quart	1
 
-#define _shift	1
-
 byte inbyte = 0;
 boolean active = false;
 int pinSet = -1;
@@ -95,7 +93,6 @@ void setup() {
   pinMode(A0,OUTPUT);
   pinMode(A1,OUTPUT);
   
-  // set pin 7 to 0
   digitalWrite(A1,0);
 }
 void writeWithDelay(int pin,int value) {
@@ -113,8 +110,8 @@ void clearAll() {
 void shiftBit() {
     writeWithDelay(SRCK,1); // SRCK high
     writeWithDelay(SRCK,0); // SRCK low
-    writeWithDelay(RCK,1); // RCK high
     writeWithDelay(RCK,0); // RCK low
+    writeWithDelay(RCK,1); // RCK high
 }
 
 void setSerIn(int value) {
@@ -589,7 +586,7 @@ void loop() {
 	keystroke(); // go!
 
         if (extraTime) {
-          delay(100);
+          delay(300);
         }
 	
 	if (shifted) {
