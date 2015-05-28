@@ -274,7 +274,7 @@
         int end = (int)endRange.integerValue;
         if (begin < 0 || begin > 48) return;
         if (end < 0 || end > 48) return;
-        if (end < begin) return;
+        if (end < begin) end = begin;
         // send a character to Bean to expect a range
         [self sendSpecialCommand:@"o+127"];
         // now send the two range values
@@ -326,6 +326,7 @@
         // ` with '
         // ” with "
         // ‟ with "
+        // "…" with "..."
 
         // All other characters should be replaced
         // with a space
@@ -343,6 +344,8 @@
         [newStr replaceOccurrencesOfString:@"“"withString:@"\"" options:NSLiteralSearch range:NSMakeRange(0,[newStr length])];
         
         [newStr replaceOccurrencesOfString:@"”"withString:@"\"" options:NSLiteralSearch range:NSMakeRange(0,[newStr length])];
+        
+        [newStr replaceOccurrencesOfString:@"…"withString:@"..." options:NSLiteralSearch range:NSMakeRange(0,[newStr length])];
         
         // now walk through the entire string and change non-
         // printable characters to spaces
