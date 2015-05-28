@@ -23,45 +23,44 @@
 #define _j	10
 #define _semic	11
 #define _h	12
-// 13 undefined
+#define _n	13 
 #define _return	14
 #define _k	15
 
-#define _comma	0
-#define _slash	1
-#define _m	2
-// 3 undefined
-#define _b	4
-#define _space	5
-#define _n	6
-#define _period	7
+#define _period	16
+#define _b	17 
+#define _space	18 
+// 19 undefined (well, maps to k...)
+#define _m	20 
+#define _slash	21
+#define _comma	22
+#define _s	23
 
-#define _x	0
-#define _f	1
-#define _d	2
-#define _c	3
-#define _z	4
-#define _v	5
-#define _s	6
-#define _g	7
+#define _g	24 
+#define _v	25 
+#define _z	26 
+#define _c	27
+#define _d	28 
+#define _f	29
+#define _x	30
+#define _u	31
 
-#define _o	0
-#define _i	1
-#define _half	2
-#define _0	3
-#define _p	4
-// 5 undefined
-#define _backsp	6
-#define _u	7
+#define _backsp	32
+#define _o	33
+#define _i	34
+#define _half	35
+#define _0	36
+#define _p	37
+// 38 undef
+#define _q	39
 
-
-#define _q	0
-#define _r	1
-#define _y	2
-#define _e	3
-#define _a	4
-#define _w	5
-#define _t	6
+#define _r	40
+#define _y	41
+#define _e	42
+#define _a	43 
+#define _w	44
+#define _caps   45
+#define _t	46
 // 7 undefined
 
 #define _excl	1
@@ -83,6 +82,9 @@ int shifted = 0; // boolean
 int special = 0; // boolean
 int extraTime = 0; // boolean
 
+int beginRange,endRange;
+int rangeCount = 0; // no range needed
+
 void setup() {
   Serial.begin(57600); //open the serial port
 
@@ -96,27 +98,31 @@ void setup() {
   // set pin 7 to 0
   digitalWrite(A1,0);
 }
+void writeWithDelay(int pin,int value) {
+  digitalWrite(pin,value);
+  //delay(2);
+}
 
 void clearAll() {
-    digitalWrite(_SRCLR,0); // SRCLR low
-    digitalWrite(_SRCLR,1); // SRCLR high
-    digitalWrite(RCK,1); // RCK high
-    digitalWrite(RCK,0); // RCK low
+    writeWithDelay(_SRCLR,0); // SRCLR low
+    writeWithDelay(_SRCLR,1); // SRCLR high
+    writeWithDelay(RCK,1); // RCK high
+    writeWithDelay(RCK,0); // RCK low
 }
 
 void shiftBit() {
-    digitalWrite(SRCK,1); // SRCK high
-    digitalWrite(SRCK,0); // SRCK low
-    digitalWrite(RCK,1); // RCK high
-    digitalWrite(RCK,0); // RCK low
+    writeWithDelay(SRCK,1); // SRCK high
+    writeWithDelay(SRCK,0); // SRCK low
+    writeWithDelay(RCK,1); // RCK high
+    writeWithDelay(RCK,0); // RCK low
 }
 
 void setSerIn(int value) {
   if (value==0) {
-    digitalWrite(SER_IN,0);
+    writeWithDelay(SER_IN,0);
   }
   else {
-    digitalWrite(SER_IN,1);
+    writeWithDelay(SER_IN,1);
   }
 }
 
@@ -145,13 +151,81 @@ void shiftKeyOff(){
 
 void keystroke() {
 	// set _G low
-	digitalWrite(_G,0);
+	writeWithDelay(_G,0);
 
 	// delay to allow strike
 	delay(50);
 
 	// set _G high
-	digitalWrite(_G,1);	
+	writeWithDelay(_G,1);
+
+        // delay for actual keystroke time
+        delay(50);
+	
+}
+
+void printNumWithColonSpace(int num) {
+        // prints a number then a colon, then a space
+        // e.g.: "12: "
+        char strBuf[10];
+        char *strToPrint=strBuf;
+        shiftAmt = 0;
+        itoa(num,strToPrint,10);
+
+        while (*strToPrint != '\0') {
+            Serial.write(*strToPrint);
+            switch(*strToPrint) {
+              case '0' :
+                 shiftAmt = _0;
+                 break;
+              case '1' :
+                 shiftAmt = _l;
+                 break;
+              case '2' :
+                 shiftAmt = _2;
+                 break;
+              case '3' :
+                 shiftAmt = _3;
+                 break;
+              case '4' :
+                 shiftAmt = _4;
+                 break;
+              case '5' :
+                 shiftAmt = _5;
+                 break;
+              case '6' :
+                 shiftAmt = _6;
+                 break;
+              case '7' :
+                 shiftAmt = _7;
+                 break;
+              case '8' :
+                 shiftAmt = _8;
+                 break;
+              case '9' :
+                 shiftAmt = _9;
+                 break;
+            }
+            // print the character
+            setBit(shiftAmt);
+            keystroke();
+            strToPrint++;    
+        }
+        // print a colon
+        setBit(_semic);
+        keystroke();
+        
+        // print a space
+        setBit(_space);
+        keystroke();
+}
+
+void printSpaces(int num) {
+    setBit(_space);
+    while (num-- > 0) {
+      keystroke();
+      delay(100);
+    }
 }
 
 void loop() {
@@ -164,11 +238,48 @@ void loop() {
     //Serial.write(inbyte);
     Serial.write("{");
 
+    // handle the case where we are looking for a range
+    if (rangeCount == 1) {
+        // this is beginRange
+        beginRange = inbyte;
+        rangeCount++;
+        return;
+    }
+    else if (rangeCount == 2) {
+        // this is the endRange
+        endRange = inbyte;
+        rangeCount = 0; // reset
+        // now print the range
+        for (int i=beginRange;i<=endRange;i++) {
+            // print a return every 10 numbers
+            if ((i-beginRange) % 5 == 0) {
+              //setBit(_return);
+              //keystroke();
+              //delay(200); // delay for return
+            }
+            //printNumWithColonSpace(i);
+            
+            // print the character associated with the number
+            setBit(i);
+            keystroke();
+            
+            // print a return
+            //printSpaces(5);
+            delay(100); // wait a bit of time
+        }
+        // print one more return
+        //setBit(_return);
+        //keystroke();
+        return;
+    }
+    
+    // not waiting for range
+
     if (inbyte >= 'A' && inbyte <= 'Z') {
 	shifted = 1;
 	inbyte+=32; // converts to lowercase
     }
-  
+
     // don't forget to handle exclamation point as special case
     switch (inbyte) {
   	case 'a':
@@ -434,6 +545,10 @@ void loop() {
 		pinSet = LED;
     		pinValue = 0;
                 break;
+        case 'o'+127: // range to print
+                special = 1;
+                rangeCount = 1;
+                break;
         default:
                 special = 1;
                 pinSet = -1;
@@ -443,6 +558,7 @@ void loop() {
       }
 
     if (special == 1) {
+      if (rangeCount == 1) return; // range will follow
       if (pinSet == LED) {
     	  if (pinValue == 0) {
     	  	Bean.setLed(0,0,0);
@@ -451,11 +567,12 @@ void loop() {
     	  	Bean.setLed(255,0,0); // red
     	  }
       }
-      if (pinSet == -1) {
+      else if (pinSet == -1) {
          // default
       }
       else {
-      	digitalWrite(pinSet,pinValue);
+      	writeWithDelay(pinSet,pinValue);
+        delay(20); // time to take
       	Serial.write('^'); // no caret character, so just send back as special
       }
     }
