@@ -43,6 +43,8 @@
 @property (assign) IBOutlet NSTextField *SHIFT;
 @property (assign) IBOutlet NSTextField *LED;
 @property (assign) IBOutlet NSTextView *textToSend;
+@property (assign) IBOutlet NSTextField *beginRange;
+@property (assign) IBOutlet NSTextField *endRange;
 
 @property (nonatomic,retain) NSMutableArray* byteQueue;
 
@@ -66,7 +68,9 @@
 - (IBAction) sendKeystroke:(id)sender;
 - (IBAction) test8:(id)sender;
 - (IBAction) sendText:(id)sender;
+- (IBAction) sendRange:(id)sender;
 - (void) setBit:(int)bit;
+- (void) addCharToSerialQueue:(char)oneChar;
 
 - (void) addStringToSerialQueue:(NSString *)str;
 - (void) sendSpecialCommand:(NSString *)str;

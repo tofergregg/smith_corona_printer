@@ -22,6 +22,7 @@
 @synthesize SRCLR,G,RCK,SRCK,SER_IN,SHIFT,LED;
 @synthesize byteQueue;
 @synthesize textToSend;
+@synthesize beginRange,endRange;
 
 - (void)awakeFromNib {
 
@@ -52,6 +53,8 @@
                                        selector:@selector(sendSerialByte)
                                        userInfo:nil
                                         repeats:YES];
+        // populate initial text box
+        textToSend.string = @"Hello, World!\n";
 }
 
 /*
@@ -266,6 +269,20 @@
         [self addStringToSerialQueue:textToSend.string];
 }
 
+- (IBAction) sendRange:(id)sender {
+        int begin = (int)beginRange.integerValue;
+        int end = (int)endRange.integerValue;
+        if (begin < 0 || begin > 48) return;
+        if (end < 0 || end > 48) return;
+        if (end < begin) return;
+        // send a character to Bean to expect a range
+        [self sendSpecialCommand:@"o+127"];
+        // now send the two range values
+        [self addCharToSerialQueue:begin];
+        [self addCharToSerialQueue:end];
+}
+
+
 - (void) setBit:(int)bit {
         // input: a number between 0 and 47
         /*
@@ -345,12 +362,18 @@
 - (void) addStringToSerialQueue:(NSString *)str {
         // adds each character to the queue, one after another
         // first, replace non-ascii characters
-        [self replaceForTypewriter:str];
+        str = [self replaceForTypewriter:str];
         for (uint i=0;i<[str length];i++) {
                 unsigned char oneChar = [str characterAtIndex:i];
                 NSData *data = [NSData dataWithBytes:&oneChar length:1];
                 [byteQueue addObject:data];
         }
+}
+
+- (void) addCharToSerialQueue:(char)oneChar {
+        // adds a raw character to send
+        NSData *data = [NSData dataWithBytes:&oneChar length:1];
+        [byteQueue addObject:data];
 }
 
 // send a serial byte and wait to send the next one
