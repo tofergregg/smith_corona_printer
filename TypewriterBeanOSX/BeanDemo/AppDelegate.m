@@ -314,7 +314,7 @@
 }
 
 - (NSString *)replaceForTypewriter:(NSString *)str {
-        NSString *allowedChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ234567890@#$%¢&*()-_¼½:;'\".,/? \n";
+        NSString *allowedChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ234567890@#$%¢&*()-_¼½:;'\".,/?! \n";
         
         NSCharacterSet *allowedCharacterSet = [NSCharacterSet characterSetWithCharactersInString:allowedChars];
         
@@ -327,6 +327,7 @@
         // ” with "
         // ‟ with "
         // "…" with "..."
+        // "—" with "--"
 
         // All other characters should be replaced
         // with a space
@@ -346,6 +347,8 @@
         [newStr replaceOccurrencesOfString:@"”"withString:@"\"" options:NSLiteralSearch range:NSMakeRange(0,[newStr length])];
         
         [newStr replaceOccurrencesOfString:@"…"withString:@"..." options:NSLiteralSearch range:NSMakeRange(0,[newStr length])];
+        
+        [newStr replaceOccurrencesOfString:@"—"withString:@"--" options:NSLiteralSearch range:NSMakeRange(0,[newStr length])];
         
         // now walk through the entire string and change non-
         // printable characters to spaces
