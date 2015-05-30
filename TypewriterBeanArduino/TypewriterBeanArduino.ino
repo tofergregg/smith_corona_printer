@@ -27,6 +27,7 @@
 #define _return	14
 #define _k	15
 
+// 16 not defined
 #define _period	16
 #define _b	17 
 #define _space	18 
@@ -51,7 +52,7 @@
 #define _half	35
 #define _0	36
 #define _p	37
-// 38 undef
+#define _dash   38
 #define _q	39
 
 #define _r	40
@@ -61,13 +62,10 @@
 #define _w	44
 #define _caps   45
 #define _t	46
-// 7 undefined
 
-#define _excl	1
+#define _excl	47
 
 #define _cent	1
-
-#define _dash	1
 
 #define _quart	1
 
@@ -79,6 +77,7 @@ int shiftAmt = 0;
 int shifted = 0; // boolean
 int special = 0; // boolean
 int extraTime = 0; // boolean
+int capslock = 0; // boolean
 
 int beginRange,endRange;
 int rangeCount = 0; // no range needed
@@ -110,8 +109,8 @@ void clearAll() {
 void shiftBit() {
     writeWithDelay(SRCK,1); // SRCK high
     writeWithDelay(SRCK,0); // SRCK low
-    writeWithDelay(RCK,0); // RCK low
     writeWithDelay(RCK,1); // RCK high
+    writeWithDelay(RCK,0); // RCK low
 }
 
 void setSerIn(int value) {
@@ -160,6 +159,24 @@ void keystroke() {
         delay(50);
 	
 }
+
+void sendBackspace() {
+        setBit(_backsp);
+        
+	// set _G low
+	writeWithDelay(_G,0);
+
+	// delay to allow strike
+	delay(100);
+
+	// set _G high
+	writeWithDelay(_G,1);
+
+        // delay for actual keystroke time
+        delay(50);
+	
+}
+
 
 void printNumWithColonSpace(int num) {
         // prints a number then a colon, then a space
@@ -223,6 +240,20 @@ void printSpaces(int num) {
       keystroke();
       delay(100);
     }
+}
+
+void capsOn() {
+    setBit(_caps);
+    keystroke();
+    delay(50);
+    capslock = 1;
+}
+
+void capsOff() {
+    setBit(_shift);
+    keystroke();
+    delay(50);
+    capslock = 0;
 }
 
 void loop() {
@@ -362,39 +393,30 @@ void loop() {
 		break;
 	case '2':
 		shiftAmt = _2;
-		shifted = 1;
 		break;
 	case '3':
 		shiftAmt = _3;
-		shifted = 1;
 		break;
 	case '4':
 		shiftAmt = _4;
-		shifted = 1;
 		break;
 	case '5':
 		shiftAmt = _5;
-		shifted = 1;
 		break;
 	case '6':
 		shiftAmt = _6;
-		shifted = 1;
 		break;
 	case '7':
 		shiftAmt = _7;
-		shifted = 1;
 		break;
 	case '8':
 		shiftAmt = _8;
-		shifted = 1;
 		break;
 	case '9':
 		shiftAmt = _9;
-		shifted = 1;
 		break;
         case '0':
 		shiftAmt = _0;
-		shifted = 1;
 		break;
 	case '@':
 		shiftAmt = _2;
@@ -564,6 +586,28 @@ void loop() {
     	  	Bean.setLed(255,0,0); // red
     	  }
       }
+      else if (inbyte == '!') {
+        // special case, have to send apostrophe, backspace, period
+        clearAll();
+        
+        if (capslock) {
+            capsOff();
+        }
+        setBit(_apost);
+        keystroke();
+        
+        delay(100);
+        sendBackspace();
+        delay(100);
+        
+        setBit(_period);
+        keystroke();
+        return;
+      }
+      else if (inbyte == 127) {
+          // backspace
+          sendBackspace();
+      }
       else if (pinSet == -1) {
          // default
       }
@@ -577,22 +621,21 @@ void loop() {
     	// first, clear shift registers
     	clearAll();
   	
-  	if (shifted) {
-		// set shift
-                shiftKeyOn();
+  	if (shifted && !capslock) {
+		// turn on caps
+                capsOn();
 	}
-	
+        else if (!shifted && capslock) {
+                // turn off caps
+                capsOff();
+        }
+                
 	setBit(shiftAmt); // set bit based on shift amount
 	keystroke(); // go!
 
         if (extraTime) {
           delay(300);
         }
-	
-	if (shifted) {
-		// unset shift
-                shiftKeyOff();
-	}
 	
 	// send character back for debugging purposes
 	Serial.write(inbyte);
