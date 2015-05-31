@@ -1,0 +1,334 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Release;
+		activeExecutable = 3EE40FF0122316710074302A /* pdfwriter */;
+		activeTarget = 8DD76FA90486AB0100D96B5E /* pdfwriter */;
+		addToTargets = (
+		);
+		breakpoints = (
+		);
+		codeSenseManager = 3EE40FFC122316820074302A /* Code sense */;
+		executables = (
+			3EE40FF0122316710074302A /* pdfwriter */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXExecutablesDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXExecutablesDataSource_NameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					22,
+					300,
+					314,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXExecutablesDataSource_ActiveFlagID,
+					PBXExecutablesDataSource_NameID,
+					PBXExecutablesDataSource_CommentsID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					426,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXFindDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFindDataSource_LocationID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					200,
+					440,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFindDataSource_MessageID,
+					PBXFindDataSource_LocationID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXSymbolsDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXSymbolsDataSource_SymbolNameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					16,
+					200,
+					50,
+					366,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXSymbolsDataSource_SymbolTypeIconID,
+					PBXSymbolsDataSource_SymbolNameID,
+					PBXSymbolsDataSource_SymbolTypeID,
+					PBXSymbolsDataSource_ReferenceNameID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.XCSCMDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					20,
+					402,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_SCM_ColumnID,
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					386,
+					60,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 321890567;
+			PBXWorkspaceStateSaveDate = 321890567;
+		};
+		perUserProjectItems = {
+			3E684D841250DEF400A79C5A = 3E684D841250DEF400A79C5A /* PBXTextBookmark */;
+			3EDFC51D1269241900376EA3 = 3EDFC51D1269241900376EA3 /* PBXTextBookmark */;
+			3EDFC51E1269241900376EA3 = 3EDFC51E1269241900376EA3 /* PBXTextBookmark */;
+			3EDFC51F1269241900376EA3 = 3EDFC51F1269241900376EA3 /* PBXTextBookmark */;
+			3EF777C6132FA8070067FB14 = 3EF777C6132FA8070067FB14 /* PBXTextBookmark */;
+			3EF777C7132FA8070067FB14 = 3EF777C7132FA8070067FB14 /* PBXTextBookmark */;
+			3EF777C8132FA8070067FB14 = 3EF777C8132FA8070067FB14 /* PBXTextBookmark */;
+			3EF777D5132FA98B0067FB14 /* PBXTextBookmark */ = 3EF777D5132FA98B0067FB14 /* PBXTextBookmark */;
+			3EF777D6132FA98B0067FB14 /* PBXTextBookmark */ = 3EF777D6132FA98B0067FB14 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 3EE40FFB122316820074302A /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	3E104F5C122DB703001514A9 /* Installer */ = {
+		activeExec = 0;
+	};
+	3E684D841250DEF400A79C5A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3EE84DEC1225D32400FF5AAA /* COPYING */;
+		name = "COPYING: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1753;
+		vrLoc = 0;
+	};
+	3EDFC51D1269241900376EA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC0519E912219C1100DCCB1B /* PDFwriter.ppd */;
+		name = "PDFwriter.ppd: 31";
+		rLen = 0;
+		rLoc = 1112;
+		rType = 0;
+		vrLen = 1075;
+		vrLoc = 692;
+	};
+	3EDFC51E1269241900376EA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3EE9D0E9122C4A90007D056F /* postinstall.sh */;
+		name = "postinstall.sh: 11";
+		rLen = 180;
+		rLoc = 169;
+		rType = 0;
+		vrLen = 499;
+		vrLoc = 0;
+	};
+	3EDFC51F1269241900376EA3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3EE9D0F3122C5BFA007D056F /* uninstall.sh */;
+		name = "uninstall.sh: 13";
+		rLen = 0;
+		rLoc = 355;
+		rType = 0;
+		vrLen = 525;
+		vrLoc = 0;
+	};
+	3EE40FF0122316710074302A /* pdfwriter */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = pdfwriter;
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	3EE40FFB122316820074302A /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	3EE40FFC122316820074302A /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	3EE84DEC1225D32400FF5AAA /* COPYING */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {604, 4459}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1753}";
+		};
+	};
+	3EE9D0E9122C4A90007D056F /* postinstall.sh */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {649, 421}}";
+			sepNavSelRange = "{169, 180}";
+			sepNavVisRange = "{0, 499}";
+		};
+	};
+	3EE9D0F3122C5BFA007D056F /* uninstall.sh */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {604, 409}}";
+			sepNavSelRange = "{355, 0}";
+			sepNavVisRange = "{0, 525}";
+		};
+	};
+	3EF777A9132FA7270067FB14 /* pdfwriter.c */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.c;
+		name = pdfwriter.c;
+		path = /Users/simonekarinlehmann/src/pdfwriter/pdfwriter.c;
+		sourceTree = "<absolute>";
+	};
+	3EF777C6132FA8070067FB14 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3EF777A9132FA7270067FB14 /* pdfwriter.c */;
+		name = "pdfwriter.c: 275";
+		rLen = 8;
+		rLoc = 8177;
+		rType = 0;
+		vrLen = 1086;
+		vrLoc = 7604;
+	};
+	3EF777C7132FA8070067FB14 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC0519E712219BC000DCCB1B /* pdfwriter.h */;
+		name = "pdfwriter.h: 31";
+		rLen = 0;
+		rLoc = 901;
+		rType = 0;
+		vrLen = 571;
+		vrLoc = 672;
+	};
+	3EF777C8132FA8070067FB14 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC0519E712219BC000DCCB1B /* pdfwriter.h */;
+		name = "pdfwriter.h: 31";
+		rLen = 0;
+		rLoc = 901;
+		rType = 0;
+		vrLen = 572;
+		vrLoc = 672;
+	};
+	3EF777D5132FA98B0067FB14 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC0519E712219BC000DCCB1B /* pdfwriter.h */;
+		name = "pdfwriter.h: 31";
+		rLen = 0;
+		rLoc = 901;
+		rType = 0;
+		vrLen = 641;
+		vrLoc = 603;
+	};
+	3EF777D6132FA98B0067FB14 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3EE9D0F3122C5BFA007D056F /* uninstall.sh */;
+		name = "uninstall.sh: 13";
+		rLen = 0;
+		rLoc = 355;
+		rType = 0;
+		vrLen = 525;
+		vrLoc = 0;
+	};
+	8DD76FA90486AB0100D96B5E /* pdfwriter */ = {
+		activeExec = 0;
+		executables = (
+			3EE40FF0122316710074302A /* pdfwriter */,
+		);
+	};
+	FC0519E512219BAF00DCCB1B /* pdfwriter.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {604, 6175}}";
+			sepNavSelRange = "{2413, 0}";
+			sepNavVisRange = "{3405, 922}";
+		};
+	};
+	FC0519E712219BC000DCCB1B /* pdfwriter.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {604, 715}}";
+			sepNavSelRange = "{901, 0}";
+			sepNavVisRange = "{603, 641}";
+		};
+	};
+	FC0519E912219C1100DCCB1B /* PDFwriter.ppd */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {824, 5304}}";
+			sepNavSelRange = "{1112, 0}";
+			sepNavVisRange = "{692, 1075}";
+		};
+	};
+}
