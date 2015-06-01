@@ -69,6 +69,8 @@
 
 #define _quart	1
 
+void clearAll();
+
 byte inbyte = 0;
 boolean active = false;
 int pinSet = -1;
@@ -92,7 +94,22 @@ void setup() {
   pinMode(A0,OUTPUT);
   pinMode(A1,OUTPUT);
   
+  // reset the shift registers (twice, for good measure)
+  clearAll();
+  clearAll();
+  
+  // set _SRCLR and _G high
+  digitalWrite(_SRCLR,1);
+  digitalWrite(_G,1);
+
+  // set RCK,SRCK,SER-IN,SHIFT low
+  digitalWrite(RCK,0);
+  digitalWrite(SRCK,0);
+  digitalWrite(SER_IN,0);
+  digitalWrite(SHIFT,0);
+  
   digitalWrite(A1,0);
+  
 }
 void writeWithDelay(int pin,int value) {
   digitalWrite(pin,value);
@@ -244,8 +261,17 @@ void printSpaces(int num) {
 
 void capsOn() {
     setBit(_caps);
-    keystroke();
-    delay(50);
+    // need slightly longer keystroke than the normal one
+    // set _G low
+    writeWithDelay(_G,0);
+
+    // delay to allow strike
+    delay(100);
+
+    // set _G high
+    writeWithDelay(_G,1);
+
+    delay(100);
     capslock = 1;
 }
 
