@@ -23,12 +23,22 @@
 @synthesize textToSend;
 @synthesize beanStatusLabel;
 @synthesize sendButton;
+extern char *textFile;
+
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {
+    return YES;
+}
 
 - (void)awakeFromNib {
 
 }
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    [NSApp activateIgnoringOtherApps:YES];
+    [self.window makeKeyAndOrderFront:self];
+    [self.window setOrderedIndex:0];
+    [self.window setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces];
+    
         // create the bean and assign ourselves as the delegate
         threadLock = [[NSLock alloc] init]; // lock for the bean
 
@@ -48,16 +58,26 @@
         
         
         // set up timer to send bytes to bean every 50ms seconds
-        [NSTimer scheduledTimerWithTimeInterval:0.001
+        [NSTimer scheduledTimerWithTimeInterval:0.3
                                          target:self
                                        selector:@selector(sendSerialByte)
                                        userInfo:nil
                                         repeats:YES];
         // populate initial text box with text from first argument's file
-        NSArray *arguments = [[NSProcessInfo processInfo] arguments];
+        /*NSArray *arguments = [[NSProcessInfo processInfo] arguments];
+        if ([arguments count] == 2) {
+            NSString *fileText = [[NSString alloc] initWithContentsOfFile:[arguments objectAtIndex:1] encoding:NSUTF8StringEncoding error:nil];
+            NSLog(@"Read in file:'%@'",[arguments objectAtIndex:1]);
     
-    NSString *fileText = [[NSString alloc] initWithContentsOfFile:[arguments objectAtIndex:1] encoding:NSUTF8StringEncoding error:nil];
+            textToSend.string = fileText;
+        }*/
+        // textFile has the name of our file
     
+        NSLog(@"About to read:'%s'",textFile);
+
+        NSString *fileText = [[NSString alloc] initWithContentsOfFile:[NSString stringWithUTF8String:textFile] encoding:NSUTF8StringEncoding error:nil];
+        NSLog(@"Read in file:'%s'",textFile);
+        
         textToSend.string = fileText;
     
 }
