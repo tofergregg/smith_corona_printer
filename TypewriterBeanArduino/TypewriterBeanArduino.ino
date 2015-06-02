@@ -573,12 +573,12 @@ void loop() {
     	case 'k'+127:
 		special = 1;
 		pinSet = SHIFT;
-    		pinValue = 1;
+    		pinValue = 0;
                 break;
     	case 'l'+127:
 		special = 1;
 		pinSet = SHIFT;
-    		pinValue = 0;
+    		pinValue = 1;
                 break;
     	case 'm'+127:
 		special = 1;
