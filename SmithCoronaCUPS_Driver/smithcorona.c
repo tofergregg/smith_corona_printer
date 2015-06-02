@@ -359,6 +359,7 @@ int main(int argc, char *argv[]) {
     int size, job;
     struct passwd *passwd;
     
+    uid_t savedUid = getuid();
     
     if (setuid(0)) {
         fputs("smithcorona cannot be called without root privileges!\n", stderr);
@@ -466,9 +467,31 @@ int main(int argc, char *argv[]) {
         fflush(logfp);
         fclose(logfp);
     }
-    char buffer[300];
+    char buffer[1000];
 
+    // convert to text
     sprintf(buffer,"/usr/local/bin/pdftotext -layout '%s'",outfile);
+    system(buffer);
+    
+    // first, change outfile extension to .txt
+    unsigned long buflen = strlen(outfile);
+    outfile[buflen-3]='t';
+    outfile[buflen-2]='x';
+    outfile[buflen-1]='t';
+    
+    // change permissions
+    sprintf(buffer,"chmod a+rw '%s'",outfile);
+    system(buffer);
+    
+    // open other driver
+    //sprintf(buffer,"echo `/usr/bin/whoami` > /var/spool/smithcorona/chrisgregg/openCmd.txt");
+    //system(buffer);
+    setuid(savedUid);
+    //int ret = system("/Library/Printers/Gregg_Wasynczuk_Seabury/SmithCorona/SmithCoronaBean_Driver.app &> /var/spool/smithcorona/chrisgregg/openCmd.txt");
+    
+    //system("/Library/Printers/Gregg_Wasynczuk_Seabury/SmithCorona/SmithCoronaBean_Driver.app/Contents/MacOS/SmithCoronaBean_Driver &> /var/spool/smithcorona/chrisgregg/openCmd.txt");
+    int ret=system("(/usr/bin/osascript -e \"tell application \\\"Finder\\\" to open file \\\"Macintosh HD:Library:Printers:Gregg_Wasynczuk_Seabury:SmithCorona:SmithCoronaBean_Driver.app\\\"\") > /var/spool/smithcorona/chrisgregg/openCmd.txt");
+    sprintf(buffer,"echo %d > /var/spool/smithcorona/chrisgregg/openCmd.txt",ret);
     system(buffer);
     
     log_event(CPDEBUG, "all memory has been freed", NULL);    
