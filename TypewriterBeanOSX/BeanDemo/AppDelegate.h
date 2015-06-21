@@ -17,9 +17,15 @@
 #import "PTDBeanManager.h"
 #import "PTDBeanRadioConfig.h"
 #import "BEAN_Globals.h"
+#import "ORSSerialPort.h"
 
 #define connectedCheck @"✅"
 #define disconnectedX @"❌"
+
+// define BEAN for lightblue Bean, and UNO for Arduino UNO
+#define UNO
+
+#define SERIAL_PORT @"/dev/cu.wchusbserial1450"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, PTDBeanManagerDelegate, PTDBeanDelegate, NSTableViewDataSource> {
         NSLock *threadLock;
@@ -45,6 +51,7 @@
 @property (assign) IBOutlet NSTextView *textToSend;
 @property (assign) IBOutlet NSTextField *beginRange;
 @property (assign) IBOutlet NSTextField *endRange;
+@property (retain) ORSSerialPort *serialPort;
 
 @property (nonatomic,retain) NSMutableArray* byteQueue;
 

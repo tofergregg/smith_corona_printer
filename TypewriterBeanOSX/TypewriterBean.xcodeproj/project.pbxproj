@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D8D47831B35C56B00399FBE /* ORSSerialPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D8D47821B35C56B00399FBE /* ORSSerialPort.m */; };
 		D54A4853196C6F28003D5DB7 /* libBean OSX Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D54A4852196C6F28003D5DB7 /* libBean OSX Library.a */; };
 		D556A1E5194B341700BDFA6B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D556A1E4194B341700BDFA6B /* Cocoa.framework */; };
 		D556A1EF194B341700BDFA6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D556A1ED194B341700BDFA6B /* InfoPlist.strings */; };
@@ -33,6 +34,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D8D47811B35C56B00399FBE /* ORSSerialPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORSSerialPort.h; sourceTree = "<group>"; };
+		2D8D47821B35C56B00399FBE /* ORSSerialPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORSSerialPort.m; sourceTree = "<group>"; };
+		2D8D47841B35C63200399FBE /* ORSSerialRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ORSSerialRequest.h; sourceTree = "<group>"; };
 		D54A4852196C6F28003D5DB7 /* libBean OSX Library.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libBean OSX Library.a"; sourceTree = "<group>"; };
 		D556A1E1194B341700BDFA6B /* TypewriterBean.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TypewriterBean.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D556A1E4194B341700BDFA6B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -83,9 +87,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D8D47801B35C54A00399FBE /* OSRSerialPort */ = {
+			isa = PBXGroup;
+			children = (
+				2D8D47811B35C56B00399FBE /* ORSSerialPort.h */,
+				2D8D47841B35C63200399FBE /* ORSSerialRequest.h */,
+				2D8D47821B35C56B00399FBE /* ORSSerialPort.m */,
+			);
+			name = OSRSerialPort;
+			sourceTree = "<group>";
+		};
 		D556A1D8194B341700BDFA6B = {
 			isa = PBXGroup;
 			children = (
+				2D8D47801B35C54A00399FBE /* OSRSerialPort */,
 				D556A226194D486B00BDFA6B /* PTDBean Headers */,
 				D556A1EA194B341700BDFA6B /* TypewriterBean */,
 				D556A208194B341700BDFA6B /* BeanDemoTests */,
@@ -281,6 +296,7 @@
 				D556A223194D455100BDFA6B /* NSTextFieldWithClickView.m in Sources */,
 				D556A1F8194B341700BDFA6B /* AppDelegate.m in Sources */,
 				D556A1F1194B341700BDFA6B /* main.m in Sources */,
+				2D8D47831B35C56B00399FBE /* ORSSerialPort.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

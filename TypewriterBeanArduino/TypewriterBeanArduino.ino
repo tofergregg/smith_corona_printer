@@ -1,3 +1,7 @@
+// define BEAN for lightblue bean, UNO for UNO
+#define UNO
+
+#ifdef BEAN
 // pin definitions (RCK is A0, which is defined in Bean Loader App pins_arduino.h)
 #define _SRCLR	3
 #define RCK 	18
@@ -6,6 +10,17 @@
 #define SER_IN 	4
 #define SHIFT 	1
 #define LED	10
+
+#else
+// UNO pin definitions
+#define _SRCLR	12
+#define RCK 	11
+#define SRCK 	10
+#define _G 	8
+#define SER_IN 	9
+#define SHIFT 	13
+#define LED	13
+#endif
 
 // letter definitions
 
@@ -27,43 +42,42 @@
 #define _return	14
 #define _k	15
 
-// 16 not defined
-#define _period	16
-#define _b	17 
-#define _space	18 
-#define _shift  19
-#define _m	20 
-#define _slash	21
-#define _comma	22
-#define _s	23
+#define _u	16
+#define _period	17
+#define _b	18 
+#define _space	19 
+#define _shift  20
+#define _m	21 
+#define _slash	22
+#define _comma	23
 
-#define _g	24 
-#define _v	25 
-#define _z	26 
-#define _c	27
-#define _d	28 
-#define _f	29
-#define _x	30
-#define _u	31
+#define _s	24
+#define _g	25 
+#define _v	26 
+#define _z	27 
+#define _c	28
+#define _d	29 
+#define _f	30
+#define _x	31
 
-#define _backsp	32
-#define _o	33
-#define _i	34
-#define _half	35
-#define _0	36
-#define _p	37
-#define _dash   38
-#define _q	39
+#define _backsp	33
+#define _o	34
+#define _i	35
+#define _half	36
+#define _0	37
+#define _p	38
+#define _dash   39
 
-#define _r	40
-#define _y	41
-#define _e	42
-#define _a	43 
-#define _w	44
-#define _caps   45
-#define _t	46
+#define _q	40
+#define _r	41
+#define _y	42
+#define _e	43
+#define _a	44 
+#define _w	45
+#define _caps   46
+#define _t	47
 
-#define _excl	47
+#define _excl	48 
 
 #define _cent	1
 
@@ -88,11 +102,19 @@ void setup() {
   Serial.begin(57600); //open the serial port
 
   // set all pins to out
+  #ifdef BEAN
   for (int i=0;i<6;i++) {
     pinMode(i,OUTPUT);
   }
   pinMode(A0,OUTPUT);
   pinMode(A1,OUTPUT);
+  #else
+  for (int i=8;i<=13;i++) {
+    pinMode(i,OUTPUT);
+  }
+  pinMode(7,OUTPUT);
+  pinMode(LED,OUTPUT);
+  #endif
   
   // reset the shift registers (twice, for good measure)
   clearAll();
@@ -606,10 +628,19 @@ void loop() {
       if (rangeCount == 1) return; // range will follow
       if (pinSet == LED) {
     	  if (pinValue == 0) {
+                #ifdef BEAN
     	  	Bean.setLed(0,0,0);
+                #else
+                digitalWrite(LED,0);
+                #endif
+                
     	  }
     	  else {
+                #ifdef BEAN
     	  	Bean.setLed(255,0,0); // red
+                #else
+                digitalWrite(LED,1);
+                #endif
     	  }
       }
       else if (inbyte == '!') {
@@ -660,7 +691,7 @@ void loop() {
 	keystroke(); // go!
 
         if (extraTime) {
-          delay(300);
+          delay(500);
         }
 	
 	// send character back for debugging purposes
@@ -668,7 +699,10 @@ void loop() {
         Serial.write("]"); // other special character
     }
   }
+  #ifdef BEAN
   Bean.sleep(50);
-  //delay(50);
+  #else
+  delay(50);
+  #endif
 }
 

@@ -23,6 +23,7 @@
 @synthesize byteQueue;
 @synthesize textToSend;
 @synthesize beginRange,endRange;
+@synthesize serialPort;
 
 - (void)awakeFromNib {
 
@@ -48,13 +49,19 @@
         
         
         // set up timer to send bytes to bean every 50ms seconds
-        [NSTimer scheduledTimerWithTimeInterval:0.001
+        [NSTimer scheduledTimerWithTimeInterval:0.2
                                          target:self
                                        selector:@selector(sendSerialByte)
                                        userInfo:nil
                                         repeats:YES];
         // populate initial text box
         textToSend.string = @"Hello, World!\n";
+        
+#ifdef UNO
+        serialPort = [ORSSerialPort serialPortWithPath:SERIAL_PORT];
+        serialPort.baudRate = @57600;
+        [serialPort open];
+#endif
 }
 
 /*
@@ -64,7 +71,11 @@
 {
         if(self.bean)
         {
+#ifdef BEAN
                 [beanManager disconnectBean:bean error:nil];
+#else
+                [serialPort close]; // Later, when you're done with the port
+#endif
                 //NSLog(@"Sent message to cancel bean.");
                 //[NSThread sleepForTimeInterval:1];
         }
@@ -387,7 +398,11 @@
         if ([byteQueue count] > 0) {
                 NSData *aByte = [byteQueue objectAtIndex:0];
                 [byteQueue removeObjectAtIndex:0];
+#ifdef BEAN
                 [self.bean sendSerialData:aByte];
+#else
+                [serialPort sendData:aByte]; // someData is an NSData object
+#endif
                 NSLog(@"Sent:%@",aByte);
         }
 }
