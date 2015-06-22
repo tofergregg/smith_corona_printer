@@ -18,6 +18,7 @@
 #import "PTDBeanRadioConfig.h"
 #import "BEAN_Globals.h"
 #import "ORSSerialPort.h"
+#import "ORSSerialPortManager.h"
 
 #define connectedCheck @"✅"
 #define disconnectedX @"❌"
@@ -25,11 +26,17 @@
 // define BEAN for lightblue Bean, and UNO for Arduino UNO
 #define UNO
 
-#define SERIAL_PORT @"/dev/cu.wchusbserial1450"
+#define PORTPARTIAL @"wchusbserial"
 
+#ifdef BEAN
 @interface AppDelegate : NSObject <NSApplicationDelegate, PTDBeanManagerDelegate, PTDBeanDelegate, NSTableViewDataSource> {
         NSLock *threadLock;
 }
+#else
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource, ORSSerialPortDelegate> {
+        NSLock *threadLock;
+}
+#endif
 
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet NSWindow *scanSheet;
@@ -51,10 +58,13 @@
 @property (assign) IBOutlet NSTextView *textToSend;
 @property (assign) IBOutlet NSTextField *beginRange;
 @property (assign) IBOutlet NSTextField *endRange;
+@property (nonatomic, strong) ORSSerialPortManager *serialPortManager;
 @property (retain) ORSSerialPort *serialPort;
+@property (nonatomic, retain) NSTimer *connectionTimer;
 
 @property (nonatomic,retain) NSMutableArray* byteQueue;
 
+- (void)openUNOport;
 - (void) openScanSheet;
 - (IBAction) closeScanSheet:(id)sender;
 - (IBAction) cancelScanSheet:(id)sender;

@@ -24,6 +24,8 @@
 @synthesize textToSend;
 @synthesize beginRange,endRange;
 @synthesize serialPort;
+@synthesize serialPortManager;
+@synthesize connectionTimer;
 
 - (void)awakeFromNib {
 
@@ -33,10 +35,12 @@
         // create the bean and assign ourselves as the delegate
         threadLock = [[NSLock alloc] init]; // lock for the bean
 
+#ifdef BEAN
         self.beans = [NSMutableArray array];
         self.beanManager = [[PTDBeanManager alloc] initWithDelegate:self];
         
         self.bean = nil;
+#endif
         self.updateTimer = nil;
         timeStep = 0;
         
@@ -49,7 +53,7 @@
         
         
         // set up timer to send bytes to bean every 50ms seconds
-        [NSTimer scheduledTimerWithTimeInterval:0.2
+        [NSTimer scheduledTimerWithTimeInterval:0.15
                                          target:self
                                        selector:@selector(sendSerialByte)
                                        userInfo:nil
@@ -58,10 +62,58 @@
         textToSend.string = @"Hello, World!\n";
         
 #ifdef UNO
-        serialPort = [ORSSerialPort serialPortWithPath:SERIAL_PORT];
-        serialPort.baudRate = @57600;
-        [serialPort open];
+        serialPortManager = [ORSSerialPortManager sharedSerialPortManager];
+        [connectedLabel setStringValue:@""];
+        [connectionProgress startAnimation:self];
+        [self openUNOport];
 #endif
+}
+
+- (void)dealloc
+{
+
+}
+
+- (void)openUNOport {
+        // set up timer for port finder
+        // check every 1 second
+        connectionTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                         target:self
+                                       selector:@selector(openUNOport_helper)
+                                       userInfo:nil
+                                        repeats:YES];
+
+}
+
+- (void) openUNOport_helper {
+        static int times_checked = 0;
+        if (times_checked > 9) {
+                // only check 10 times
+                NSLog(@"Checked ten times and could not make connection");
+                [connectionProgress stopAnimation:self];
+                [connectedLabel setStringValue:disconnectedX];
+                [connectionTimer invalidate];
+        }
+        times_checked++;
+        for (int i=0;i<self.serialPortManager.availablePorts.count;i++) {
+                
+                serialPort = [self.serialPortManager.availablePorts objectAtIndex:i];
+                NSString *portName =[serialPort name];
+                
+                if ([portName containsString:PORTPARTIAL]) {
+                        // found the port
+                        [connectionTimer invalidate];
+                        times_checked = 0; // reset for next time
+                        serialPort.delegate = self;
+                        serialPort.baudRate = @57600;
+                        [serialPort open];
+                        [connectionProgress stopAnimation:self];
+                        [connectedLabel setStringValue:connectedCheck];
+
+                        return;
+                }
+        }
+        NSLog(@"Could not connect to port, try #%d",times_checked);
 }
 
 /*
@@ -412,6 +464,7 @@
  */
 - (IBAction)newConnectionMenu:(id)sender
 {
+#ifdef BEAN
         if (bean.state != BeanState_ConnectedAndValidated) {
                 NSLog(@"Finding New Beans");
                 
@@ -429,6 +482,15 @@
                         // probably should have an error message here
                 }
         }
+#else
+        NSLog(@"Attempting to reconnect the UNO serial.");
+        [connectedLabel setStringValue:@""];
+        [connectionProgress startAnimation:self];
+        [serialPort close];
+
+        [self openUNOport];
+#endif
+        
 }
 
 // check to make sure we're on
@@ -450,6 +512,7 @@
         NSLog(@"Updated Bean in Scan Window: %@",[((PTDBean *)self.beans[0]) name]);
         //[self.beanManager connectToBean:bean error:nil];
 }
+#ifdef BEAN
 // bean connected
 - (void)BeanManager:(PTDBeanManager*)beanManager didConnectToBean:(PTDBean*)bean error:(NSError*)error{
         if (error) {
@@ -466,10 +529,23 @@
         
 }
 
+
 - (void)BeanManager:(PTDBeanManager*)beanManager didDisconnectBean:(PTDBean*)bean error:(NSError*)error {
         NSLog(@"Bean disconnected.");
         [connectedLabel setStringValue:disconnectedX];
 }
+#else
+- (void)serialPortWasOpened:(ORSSerialPort *)serialPort {
+        NSLog(@"UNO serial connected!");
+        [connectionProgress stopAnimation:self];
+        [connectedLabel setStringValue:connectedCheck];
+}
+- (void)serialPortWasClosed:(ORSSerialPort *)serialPort {
+        NSLog(@"UNO serial disconnected.");
+        [connectedLabel setStringValue:disconnectedX];
+}
+#endif
+
 
 /*
  Open scan sheet to discover Bean peripheral if it is LE capable hardware
@@ -501,6 +577,7 @@
                 NSInteger selectedRow = [self.scanTable selectedRow];
                 if (selectedRow != -1)
                 {
+#ifdef BEAN
                         self.bean = [self.beans objectAtIndex:selectedRow];
                         self.bean.delegate = self;
                         [connectedLabel setStringValue:@""];
@@ -512,6 +589,7 @@
                                                                           target:self selector:@selector(updateAll)
                                                                         userInfo:nil repeats:YES];
                         self.updateTimer = timer;
+#endif
                 }
         }
 }
@@ -575,8 +653,11 @@
 
         [beanManager disconnectBean:bean error:nil];
 }
-
+#ifdef BEAN
 - (void)bean:(PTDBean *)bean serialDataReceived:(NSData *)data {
+#else
+- (void)serialPort:(ORSSerialPort *)serialPort didReceiveData:(NSData *)data {
+#endif
         // will receive a bunch of bytes
         NSString* bytesReceived;
         
@@ -646,5 +727,12 @@
         //NSLog(@"Received from Bean:%@",bytesReceived);
         
 }
+#ifdef UNO
+- (void)serialPortWasRemovedFromSystem:(ORSSerialPort *)serialPort;
+{
+        // After a serial port is removed from the system, it is invalid and we must discard any references to it
+        self.serialPort = nil;
+}
+#endif
 
 @end

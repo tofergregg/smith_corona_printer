@@ -196,7 +196,9 @@ void keystroke() {
 
         // delay for actual keystroke time
         delay(50);
-	
+        
+        // clear the shift register
+        clearAll();
 }
 
 void sendBackspace() {
