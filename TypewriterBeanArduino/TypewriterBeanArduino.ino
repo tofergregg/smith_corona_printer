@@ -60,6 +60,7 @@
 #define _f	30
 #define _x	31
 
+#define _bell   32
 #define _backsp	33
 #define _o	34
 #define _i	35
