@@ -377,7 +377,7 @@
 }
 
 - (NSString *)replaceForTypewriter:(NSString *)str {
-        NSString *allowedChars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ234567890@#$%¢&*()-_¼½:;'\".,/?! \n";
+        NSString *allowedChars = @"|abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ234567890@#$%¢&*()-_¼½:;'\".,/?! \n";
         
         NSCharacterSet *allowedCharacterSet = [NSCharacterSet characterSetWithCharactersInString:allowedChars];
         
@@ -651,7 +651,12 @@
         [self.updateTimer invalidate];
         [threadLock unlock];
 
+#ifdef BEAN
         [beanManager disconnectBean:bean error:nil];
+#else
+        [serialPort close];
+#endif
+        
 }
 #ifdef BEAN
 - (void)bean:(PTDBean *)bean serialDataReceived:(NSData *)data {
