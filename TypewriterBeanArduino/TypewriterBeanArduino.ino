@@ -542,6 +542,11 @@ void loop() {
 		shiftAmt = _return;
                 extraTime = 1;
 		break;
+        
+        case '|':
+                shiftAmt = _bell;
+                break;
+
 	case 127: // backspace
 		shiftAmt = _backsp;
 		break;
