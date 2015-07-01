@@ -1,5 +1,20 @@
+#include <MIDI.h>
 // define BEAN for lightblue bean, UNO for UNO
 #define UNO
+
+//MIDI_CREATE_DEFAULT_INSTANCE();
+//Defining the BaudRate used by Hairless MIDI bridge
+//To use with Arduino default USB 'modem' mode
+struct MySettings : midi::DefaultSettings
+{
+  static const long BaudRate = 115200;
+};
+
+//midi::MidiInterface<HardwareSerial,midi::DefaultSettings> myMidi(Serial);
+//midi::MidiInterface<Type> Name((Type&)SerialPort)
+//MIDI_CREATE_INSTANCE(HardwareSerial, Serial, MIDI);
+//MIDI_CREATE_DEFAULT_INSTANCE();
+MIDI_CREATE_CUSTOM_INSTANCE(HardwareSerial, Serial, MIDI, MySettings);
 
 // struct for a measure of 8 notes
 typedef struct Measure {
@@ -7,124 +22,8 @@ typedef struct Measure {
 } measure;
 
 #define MEASURE_COUNT 113
-//int tempo = 0.11712;
-int tempo = 50;
-
-const measure notes[MEASURE_COUNT] = {
-        "eeeeeeee", // 9
-        "eeeeeree", // 10
-        "eeeeeeee", // 11
-        "brrrcree", // 12
-        "eeeeeeee", // 13
-        "eeeeeree", // 14
-        "eeeeeeee", // 15
-        "brrrcree", // 16
-        "eeeeeeee", // 17
-        "eeeeeeee", // 18
-        "eeeeeeee", // 19
-        "brrrcree", // 20
-        "eeeeeeee", // 21
-        "eeeeeeee", // 22
-        "eeeeeeee", // 23
-        "eeeeeeee", // 24
-        "errrerrr", // 25
-        "brrrcree", // 26
-        "eeeeeeee", // 27
-        "errrcree", // 28
-        "eeeeeeee", // 29
-        "errrcree", // 30
-        "eeeeeeee", // 31
-        "eeeeerrr", // 32
-        "brrrcree", // 33
-        "eeeeerer", // 34
-        "eeeeeeee", // 35
-        "errrcree", // 36
-        "eeeeeeee", // 37
-        "rrrrcree", // 38
-        "eeerbree", // 39
-        "erbrreer", // 40
-        "breeeeee", // 41
-        "eeeeeeee", // 42
-        "eeeeeeee", // 43
-        "eeeeeree", // 44
-        "eeeeeeee", // 45
-        "brrrcree", // 46
-        "eeeeeeee", // 47
-        "eeeeeree", // 48
-        "eeeeeeee", // 49
-        "breecree", // 50
-        "eeeeeeee", // 51
-        "eeeeeeee", // 52
-        "eeeeeeee", // 53
-        "brrrcree", // 54
-        "eeeeeeee", // 55
-        "eeeeeeee", // 56
-        "eeeeeeee", // 57
-        "eeeeeeee", // 58
-        "errrcrrr", // 59
-        "rrererer", // 60 bum bum bum bum
-        "rrrrbrrr", // 61
-        "crereree", // 62
-        "errrerer", // 63
-        "rrererer", // 64
-        "errrbrrr", // 65
-        "crereree", // 66
-        "errrerer", // 67
-        "rrererer", // 68
-        "errrbrbr", // 69 two bells
-        "rrereree", // 70
-        "errrerer", // 71
-        "rrererer", // 72
-        "erereeer", // 73
-        "erereeer", // 74
-        "erererer", // 75
-        "erererer", // 76
-        "errrbrrr", // 77
-        "crrreree", // 78
-        "errrerer", // 79
-        "rrererer", // 80
-        "errrbrrr", // 81
-        "crereree", // 82
-        "errrerer", // 83
-        "rrererer", // 84
-        "errrbrbr", // 85 two bells
-        "rrereree", // 86
-        "errrerer", // 87
-        "rrererer", // 88
-        "erereeer", // 89
-        "erereeer", // 90
-        "erererer", // 91
-        "crrrrrrr", // 92
-        "rrrrrrrr", // 93
-        "rrrrrrrr", // 94
-        "rrrrrrrr", // 95
-        "rrrrrrrr", // 96
-        "eeeeeeee", // 97
-        "eeeeeree", // 98
-        "eeeeeeee", // 99
-        "brrrcree", // 100
-        "eeeeeeee", // 101
-        "eeeeeree", // 102
-        "eeeeeeee", // 103
-        "brrrcree", // 104
-        "eeeeeeee", // 105
-        "eeeeeeee", // 106
-        "eeeeeeee", // 107
-        "brrrcree", // 108
-        "eeeeeeee", // 109
-        "rrrrcree", // 110
-        "eeeeeeee", // 111
-        "errrcree", // 112
-        "eeerbree", // 113
-        "erbreeer", // 114
-        "breeerbr", // 115
-        "eeerbree", // 116
-        "eeeeeeee", // 117
-        "eeeeeeee", // 118
-        "eeeeeeee", // 119
-        "eeeeeeee", // 120
-        "brrrcrrr", // 121
-};
+int keystroke_delay = 50;
+int noteCount = 0; // how many notes we've played so far
 
 #define TOTAL_WIKI_CHARS 124
 
@@ -400,8 +299,11 @@ int translateChar(byte inbyte) {
 }
 
 void setup() {
-  Serial.begin(57600); //open the serial port
+    noteCount = 0; // no notes so far
+    MIDI.setHandleNoteOn(handleNoteOn);  // Put only the name of the function
 
+    // Initiate MIDI communications, listen to all channels
+    MIDI.begin(MIDI_CHANNEL_OMNI);
   // set all pins to out
   #ifdef BEAN
   for (int i=0;i<6;i++) {
@@ -483,67 +385,35 @@ void keystroke() {
 	writeWithDelay(_G,0);
 
 	// delay to allow strike
-	delay(50);
+	delay(keystroke_delay);
 
 	// set _G high
 	writeWithDelay(_G,1);
 
         // delay for actual keystroke time
-        delay(50);
+        delay(keystroke_delay);
         
         // clear the shift register
         clearAll();
 }
 
-void playSong() {
-  int wikiCount = 0;
-  for (int measure_count=0;measure_count<MEASURE_COUNT;measure_count++) {
-    measure m = notes[measure_count];
-    for (char note = 0;note<8;note++) {
-      char theNote = m.bar[note];
-      if (theNote == 'e') {
-        // play the "note"
-        setBit(translateChar(wikiWords[wikiCount % (TOTAL_WIKI_CHARS - 1)]));
-        wikiCount++;
-        keystroke();
-      }
-      else if (theNote == 'r') {
-        // rest, but still go through the motions
-        setBit(_unused);
-        keystroke();
-      }
-      else if (theNote == 'b') {
-        // the bell
-        setBit(_bell);
-        keystroke();
-      }
-      else if (theNote == 'c') {
-        setBit(_return);
-        keystroke();
-      }
-      delay(tempo);
+void handleNoteOn(byte channel, byte pitch, byte velocity)
+{
+    // Do whatever you want when a note is pressed.
+
+    // Try to keep your callbacks short (no delays ect)
+    // otherwise it would slow down the loop() and have a bad impact
+    // on real-time performance.
+    if (pitch == 72) setBit(_bell);
+    else if (pitch == 59) setBit(_return);
+    else {
+      setBit(translateChar(wikiWords[noteCount % (TOTAL_WIKI_CHARS - 1)]));
+      noteCount++;
     }
-  }
+    keystroke();
 }
 
 void loop() {
-  inbyte = Serial.read(); //Read one byte (one character) from serial port.
-  if (inbyte != 255) {
-    Serial.write(inbyte);
-    if (inbyte == 's') { // start playing
-      playSong();
-    }
-    else if (inbyte == 'l') { // turn on caps lock
-      setBit(_caps);
-      keystroke();
-    }
-    // send character back for debugging purposes
-    Serial.write("]"); // other special character
-  }
-  #ifdef BEAN
-  Bean.sleep(50);
-  #else
-  delay(50);
-  #endif
+  MIDI.read();
 }
 
