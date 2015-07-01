@@ -99,6 +99,8 @@ int capslock = 0; // boolean
 int beginRange,endRange;
 int rangeCount = 0; // no range needed
 
+int delayTime = 30;
+
 void setup() {
   Serial.begin(57600); //open the serial port
 
@@ -710,7 +712,7 @@ void loop() {
   #ifdef BEAN
   Bean.sleep(50);
   #else
-  delay(50);
+  delay(delayTime);
   #endif
 }
 
