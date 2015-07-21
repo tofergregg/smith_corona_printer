@@ -33,6 +33,16 @@ for_writing_in_characters_\
 similar_to_those_produced_by_a_\
 printer.";
 
+/*#define TOTAL_WIKI_CHARS 204
+const char wikiWords[TOTAL_WIKI_CHARS] = "          welcome\n            \
+to\n      \
+the greenville\n        \
+drive-in'\b.\n\n\
+dwight grimm and leigh van swall, proprietors\n\n\n\n \
+thank you to all of our supporters'\b.\n\n \
+now sit back, and enjoy the show'\b.\n\n\n";*/
+
+
 #ifdef BEAN
 // pin definitions (RCK is A0, which is defined in Bean Loader App pins_arduino.h)
 #define _SRCLR	3
@@ -291,7 +301,7 @@ int translateChar(byte inbyte) {
 	case '\n':
 		shiftAmt = _return;
 		break;
-	case 127: // backspace
+	case '\b': // backspace
 		shiftAmt = _backsp;
 		break;
       }
@@ -410,6 +420,7 @@ void handleNoteOn(byte channel, byte pitch, byte velocity)
       setBit(translateChar(wikiWords[noteCount % (TOTAL_WIKI_CHARS - 1)]));
       noteCount++;
     }
+    //if (noteCount < TOTAL_WIKI_CHARS) // remove for repeating text!
     keystroke();
 }
 
