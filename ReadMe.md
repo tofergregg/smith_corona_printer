@@ -11,3 +11,8 @@ To set up midi:
 5. Instruments->Relate Output Device, set Helicopter and Car Engine to MIDI 1
 6. If necessary, test MIDI output with Configuration->MIDI Configuration,
    MIDI output 1 should be set to Bus 1, and then Test
+
+Correct Arduino file: TypewriterSongMIDI2
+
+Song for Melody Assistant: typewriterFluteHighQ2_typewriter.myr
+
