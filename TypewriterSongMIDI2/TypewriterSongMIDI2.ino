@@ -21,7 +21,7 @@ typedef struct Measure {
   char bar[9];
 } measure;
 
-int keystroke_delay = 50;
+int keystroke_delay = 30;
 
 #ifdef BEAN
 // pin definitions (RCK is A0, which is defined in Bean Loader App pins_arduino.h)
@@ -289,13 +289,16 @@ int translateChar(byte inbyte) {
                 break;
         default:
                 shiftAmt = 0;
-      }
-      return shiftAmt;
+  case '+': shiftAmt = _caps;
+    break;
+  case '=': shiftAmt = _shift;
+  }
+  return shiftAmt;
 }
 
 char pitch2char(int pitch) {
   // translates the pitch from 30 ('a') on upward based on the next string
-  const char *allowed_chars="abcdefghijklmnopqrstuvwxyz2345^67890@#$%*()-_'\":;.,/?\n \b";
+  const char *allowed_chars="abcdefghijklmnopqrstuvwxyz2345^67890@#$%*()-_'\":;.,/?\n \b+=";
   if (pitch < 30 || pitch > 30+strlen(allowed_chars)-1) return 0; // not in range
   return allowed_chars[pitch-30];
 }
@@ -339,29 +342,29 @@ void setup() {
 }
 void writeWithDelay(int pin,int value) {
   digitalWrite(pin,value);
-  //delay(2);
+  delay(1);
 }
 
 void clearAll() {
-    writeWithDelay(_SRCLR,0); // SRCLR low
-    writeWithDelay(_SRCLR,1); // SRCLR high
-    writeWithDelay(RCK,1); // RCK high
-    writeWithDelay(RCK,0); // RCK low
+    digitalWrite(_SRCLR,0); // SRCLR low
+    digitalWrite(_SRCLR,1); // SRCLR high
+    digitalWrite(RCK,1); // RCK high
+    digitalWrite(RCK,0); // RCK low
 }
 
 void shiftBit() {
-    writeWithDelay(SRCK,1); // SRCK high
+    digitalWrite(SRCK,1); // SRCK high
     writeWithDelay(SRCK,0); // SRCK low
-    writeWithDelay(RCK,1); // RCK high
-    writeWithDelay(RCK,0); // RCK low
+    digitalWrite(RCK,1); // RCK high
+    digitalWrite(RCK,0); // RCK low
 }
 
 void setSerIn(int value) {
   if (value==0) {
-    writeWithDelay(SER_IN,0);
+    digitalWrite(SER_IN,0);
   }
   else {
-    writeWithDelay(SER_IN,1);
+    digitalWrite(SER_IN,1);
   }
 }
 
@@ -383,13 +386,13 @@ void setBit(int bit) {
 
 void keystroke() {
 	// set _G low
-	writeWithDelay(_G,0);
+	digitalWrite(_G,0);
 
 	// delay to allow strike
 	delay(keystroke_delay);
 
 	// set _G high
-	writeWithDelay(_G,1);
+	digitalWrite(_G,1);
 
         // delay for actual keystroke time
         delay(keystroke_delay);
